@@ -30,6 +30,20 @@
 		483D844A1C6925BA00DD9F6E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 483D84491C6925BA00DD9F6E /* SystemConfiguration.framework */; };
 		483D844C1C6925CD00DD9F6E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 483D844B1C6925CD00DD9F6E /* libz.tbd */; };
 		483D844E1C6925D700DD9F6E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 483D844D1C6925D700DD9F6E /* libsqlite3.tbd */; };
+		483D84541C693A0A00DD9F6E /* PhotoCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84531C693A0A00DD9F6E /* PhotoCollectionViewController.m */; };
+		483D84571C693A2A00DD9F6E /* LibraryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84561C693A2A00DD9F6E /* LibraryTableViewController.m */; };
+		483D845A1C693A5B00DD9F6E /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84591C693A5B00DD9F6E /* CreateViewController.m */; };
+		483D845D1C69424700DD9F6E /* LibraryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D845C1C69424700DD9F6E /* LibraryTableViewCell.m */; };
+		483D84601C69427100DD9F6E /* PhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D845F1C69427100DD9F6E /* PhotoCollectionViewCell.m */; };
+		483D84711C6949EB00DD9F6E /* Album+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84621C6949EB00DD9F6E /* Album+CoreDataProperties.m */; };
+		483D84721C6949EB00DD9F6E /* Album.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84641C6949EB00DD9F6E /* Album.m */; };
+		483D84731C6949EB00DD9F6E /* Event+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84661C6949EB00DD9F6E /* Event+CoreDataProperties.m */; };
+		483D84741C6949EB00DD9F6E /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84681C6949EB00DD9F6E /* Event.m */; };
+		483D84751C6949EB00DD9F6E /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D846A1C6949EB00DD9F6E /* User+CoreDataProperties.m */; };
+		483D84761C6949EB00DD9F6E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D846C1C6949EB00DD9F6E /* User.m */; };
+		483D84771C6949EB00DD9F6E /* Photo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D846E1C6949EB00DD9F6E /* Photo+CoreDataProperties.m */; };
+		483D84781C6949EB00DD9F6E /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84701C6949EB00DD9F6E /* Photo.m */; };
+		483D847D1C694D4200DD9F6E /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D847C1C694D4200DD9F6E /* TabBarController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +74,34 @@
 		483D84491C6925BA00DD9F6E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		483D844B1C6925CD00DD9F6E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		483D844D1C6925D700DD9F6E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		483D84521C693A0A00DD9F6E /* PhotoCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoCollectionViewController.h; path = ../PhotoCollectionViewController.h; sourceTree = "<group>"; };
+		483D84531C693A0A00DD9F6E /* PhotoCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoCollectionViewController.m; path = ../PhotoCollectionViewController.m; sourceTree = "<group>"; };
+		483D84551C693A2A00DD9F6E /* LibraryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LibraryTableViewController.h; path = ../LibraryTableViewController.h; sourceTree = "<group>"; };
+		483D84561C693A2A00DD9F6E /* LibraryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LibraryTableViewController.m; path = ../LibraryTableViewController.m; sourceTree = "<group>"; };
+		483D84581C693A5B00DD9F6E /* CreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateViewController.h; path = ../CreateViewController.h; sourceTree = "<group>"; };
+		483D84591C693A5B00DD9F6E /* CreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateViewController.m; path = ../CreateViewController.m; sourceTree = "<group>"; };
+		483D845B1C69424700DD9F6E /* LibraryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryTableViewCell.h; sourceTree = "<group>"; };
+		483D845C1C69424700DD9F6E /* LibraryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryTableViewCell.m; sourceTree = "<group>"; };
+		483D845E1C69427100DD9F6E /* PhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		483D845F1C69427100DD9F6E /* PhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		483D84611C6949EB00DD9F6E /* Album+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Album+CoreDataProperties.h"; sourceTree = "<group>"; };
+		483D84621C6949EB00DD9F6E /* Album+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Album+CoreDataProperties.m"; sourceTree = "<group>"; };
+		483D84631C6949EB00DD9F6E /* Album.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Album.h; sourceTree = "<group>"; };
+		483D84641C6949EB00DD9F6E /* Album.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Album.m; sourceTree = "<group>"; };
+		483D84651C6949EB00DD9F6E /* Event+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+CoreDataProperties.h"; sourceTree = "<group>"; };
+		483D84661C6949EB00DD9F6E /* Event+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+CoreDataProperties.m"; sourceTree = "<group>"; };
+		483D84671C6949EB00DD9F6E /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		483D84681C6949EB00DD9F6E /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		483D84691C6949EB00DD9F6E /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
+		483D846A1C6949EB00DD9F6E /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
+		483D846B1C6949EB00DD9F6E /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		483D846C1C6949EB00DD9F6E /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		483D846D1C6949EB00DD9F6E /* Photo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo+CoreDataProperties.h"; sourceTree = "<group>"; };
+		483D846E1C6949EB00DD9F6E /* Photo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photo+CoreDataProperties.m"; sourceTree = "<group>"; };
+		483D846F1C6949EB00DD9F6E /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		483D84701C6949EB00DD9F6E /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		483D847B1C694D4200DD9F6E /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		483D847C1C694D4200DD9F6E /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +134,7 @@
 		483D83C61C69202400DD9F6E = {
 			isa = PBXGroup;
 			children = (
+				483D847A1C694A1100DD9F6E /* CoreData */,
 				483D842E1C69253B00DD9F6E /* Frameworks */,
 				483D83D11C69202400DD9F6E /* PicDiary */,
 				483D83D01C69202400DD9F6E /* Products */,
@@ -114,6 +157,18 @@
 				483D83D81C69202400DD9F6E /* ViewController.h */,
 				483D83D91C69202400DD9F6E /* ViewController.m */,
 				483D83DB1C69202400DD9F6E /* Main.storyboard */,
+				483D847B1C694D4200DD9F6E /* TabBarController.h */,
+				483D847C1C694D4200DD9F6E /* TabBarController.m */,
+				483D84581C693A5B00DD9F6E /* CreateViewController.h */,
+				483D84591C693A5B00DD9F6E /* CreateViewController.m */,
+				483D84521C693A0A00DD9F6E /* PhotoCollectionViewController.h */,
+				483D84531C693A0A00DD9F6E /* PhotoCollectionViewController.m */,
+				483D845E1C69427100DD9F6E /* PhotoCollectionViewCell.h */,
+				483D845F1C69427100DD9F6E /* PhotoCollectionViewCell.m */,
+				483D84551C693A2A00DD9F6E /* LibraryTableViewController.h */,
+				483D84561C693A2A00DD9F6E /* LibraryTableViewController.m */,
+				483D845B1C69424700DD9F6E /* LibraryTableViewCell.h */,
+				483D845C1C69424700DD9F6E /* LibraryTableViewCell.m */,
 				483D83E11C69202400DD9F6E /* Assets.xcassets */,
 				483D83E31C69202400DD9F6E /* LaunchScreen.storyboard */,
 				483D83E61C69202400DD9F6E /* Info.plist */,
@@ -152,6 +207,29 @@
 				483D84341C69254C00DD9F6E /* ParseUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		483D847A1C694A1100DD9F6E /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				483D84611C6949EB00DD9F6E /* Album+CoreDataProperties.h */,
+				483D84621C6949EB00DD9F6E /* Album+CoreDataProperties.m */,
+				483D84631C6949EB00DD9F6E /* Album.h */,
+				483D84641C6949EB00DD9F6E /* Album.m */,
+				483D84651C6949EB00DD9F6E /* Event+CoreDataProperties.h */,
+				483D84661C6949EB00DD9F6E /* Event+CoreDataProperties.m */,
+				483D84671C6949EB00DD9F6E /* Event.h */,
+				483D84681C6949EB00DD9F6E /* Event.m */,
+				483D84691C6949EB00DD9F6E /* User+CoreDataProperties.h */,
+				483D846A1C6949EB00DD9F6E /* User+CoreDataProperties.m */,
+				483D846B1C6949EB00DD9F6E /* User.h */,
+				483D846C1C6949EB00DD9F6E /* User.m */,
+				483D846D1C6949EB00DD9F6E /* Photo+CoreDataProperties.h */,
+				483D846E1C6949EB00DD9F6E /* Photo+CoreDataProperties.m */,
+				483D846F1C6949EB00DD9F6E /* Photo.h */,
+				483D84701C6949EB00DD9F6E /* Photo.m */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,10 +302,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				483D84751C6949EB00DD9F6E /* User+CoreDataProperties.m in Sources */,
 				483D83DA1C69202400DD9F6E /* ViewController.m in Sources */,
+				483D84601C69427100DD9F6E /* PhotoCollectionViewCell.m in Sources */,
+				483D847D1C694D4200DD9F6E /* TabBarController.m in Sources */,
+				483D84731C6949EB00DD9F6E /* Event+CoreDataProperties.m in Sources */,
+				483D84741C6949EB00DD9F6E /* Event.m in Sources */,
+				483D84761C6949EB00DD9F6E /* User.m in Sources */,
+				483D845D1C69424700DD9F6E /* LibraryTableViewCell.m in Sources */,
 				483D83D71C69202400DD9F6E /* AppDelegate.m in Sources */,
+				483D84541C693A0A00DD9F6E /* PhotoCollectionViewController.m in Sources */,
+				483D84781C6949EB00DD9F6E /* Photo.m in Sources */,
+				483D845A1C693A5B00DD9F6E /* CreateViewController.m in Sources */,
+				483D84771C6949EB00DD9F6E /* Photo+CoreDataProperties.m in Sources */,
+				483D84571C693A2A00DD9F6E /* LibraryTableViewController.m in Sources */,
 				483D83E01C69202400DD9F6E /* PicDiary.xcdatamodeld in Sources */,
 				483D83D41C69202400DD9F6E /* main.m in Sources */,
+				483D84711C6949EB00DD9F6E /* Album+CoreDataProperties.m in Sources */,
+				483D84721C6949EB00DD9F6E /* Album.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
