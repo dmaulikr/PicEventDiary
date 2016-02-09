@@ -7,9 +7,16 @@
 //
 
 #import "CreateViewController.h"
+#import "AppDelegate.h"
 #import "Event.h"
 
 @interface CreateViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextField *eventEntered;
+@property (weak, nonatomic) IBOutlet UIDatePicker *dateEntered;
+@property (weak, nonatomic) IBOutlet UITextView *noteEntered;
+
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -17,6 +24,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    
+    self.managedObjectContext = appDelegate.managedObjectContext;
+
     // Do any additional setup after loading the view.
 }
 
@@ -27,6 +39,46 @@
 
 
 
+- (IBAction)saveButtonPressed:(UIButton *)sender {
+    NSLog(@"Save Button Pressed");
+    
+    NSManagedObjectContext *context = self.managedObjectContext;
+    
+    Event *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Event" inManagedObjectContext:context];
+    
+    newManagedObject.eventName = self.eventEntered.text;
+    newManagedObject.date = [[self.dateEntered date] timeIntervalSince1970];
+    newManagedObject.note = self.noteEntered.text;
+    
+    NSError *error = nil;
+    if (![context save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    int controllerIndex = 0;
+    UITabBarController *tabBarController = self.tabBarController;
+    UIView * fromView = tabBarController.selectedViewController.view;
+    UIView * toView = [[tabBarController.viewControllers objectAtIndex:controllerIndex] view];
+    
+    // Transition using a page curl.
+    [UIView transitionFromView:fromView
+                        toView:toView
+                      duration:0.5
+                       options:(controllerIndex > tabBarController.selectedIndex ? UIViewAnimationOptionTransitionCurlUp : UIViewAnimationOptionTransitionCurlDown)
+                    completion:^(BOOL finished) {
+                        if (finished) {
+                            tabBarController.selectedIndex = controllerIndex;
+                        }
+                    }];
+    
+}
+
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.eventEntered resignFirstResponder];
+    [self.noteEntered resignFirstResponder];
+}
 
 
 /*

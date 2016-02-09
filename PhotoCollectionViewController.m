@@ -7,8 +7,14 @@
 //
 
 #import "PhotoCollectionViewController.h"
+#import "PhotoCollectionViewCell.h"
+#import "AppDelegate.h"
 
 @interface PhotoCollectionViewController ()
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -18,6 +24,10 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    
+    self.managedObjectContext = appDelegate.managedObjectContext;
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -47,18 +57,18 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
 #warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of items
-    return 0;
+    return 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
+    PhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"photoCell" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor redColor];
     // Configure the cell
     
     return cell;

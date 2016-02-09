@@ -10,4 +10,8 @@
 
 @interface LibraryTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *eventNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
 @end

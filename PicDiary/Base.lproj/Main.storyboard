@@ -8,7 +8,7 @@
         <!--Library-->
         <scene sceneID="p3z-8e-Jlt">
             <objects>
-                <viewController title="Library" id="CO0-m5-vAE" sceneMemberID="viewController">
+                <viewController title="Library" id="CO0-m5-vAE" customClass="LibraryTableViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZuA-4A-bY0"/>
                         <viewControllerLayoutGuide type="bottom" id="SZd-5n-LkR"/>
@@ -22,7 +22,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="LibraryCell" rowHeight="83" id="zbt-oo-N0I" customClass="LibraryTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="83"/>
+                                        <rect key="frame" x="0.0" y="92" width="320" height="83"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zbt-oo-N0I" id="a1n-na-mR7">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="82.5"/>
@@ -35,20 +35,23 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJN-Wk-TI7">
-                                                    <rect key="frame" x="8" y="40" width="147" height="21"/>
+                                                    <rect key="frame" x="8" y="32" width="147" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qcg-ue-O2i">
-                                                    <rect key="frame" x="170" y="40" width="142" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <rect key="frame" x="8" y="53" width="287" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="dateLabel" destination="Qcg-ue-O2i" id="YvJ-Gy-vGJ"/>
+                                            <outlet property="eventNameLabel" destination="gvl-Sc-TFz" id="XeG-ss-qiP"/>
+                                            <outlet property="locationLabel" destination="jJN-Wk-TI7" id="KBE-0z-sJJ"/>
                                             <segue destination="ZUX-YI-za6" kind="push" identifier="EventDetails" id="WEi-qc-jLX"/>
                                         </connections>
                                     </tableViewCell>
@@ -61,16 +64,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Library" id="KBF-YN-AiF"/>
+                    <navigationItem key="navigationItem" id="Jaf-rP-sdB"/>
+                    <connections>
+                        <outlet property="tableView" destination="CB7-Dx-IcG" id="uoM-DI-IX4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gKB-2W-eUa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="692" y="1613"/>
+            <point key="canvasLocation" x="1224" y="1613"/>
         </scene>
         <!--Event Details-->
         <scene sceneID="438-A4-r5I">
             <objects>
-                <viewController title="Event Details" id="ZUX-YI-za6" sceneMemberID="viewController">
+                <viewController title="Event Details" id="ZUX-YI-za6" customClass="EventDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Di7-QG-7Xe"/>
                         <viewControllerLayoutGuide type="bottom" id="1gh-LC-UAs"/>
@@ -89,8 +95,8 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="a89-9y-R01">
-                                        <rect key="frame" x="0.5" y="198" width="319" height="117"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CommentCell" id="a89-9y-R01" customClass="EventDetailCommentViewCell">
+                                        <rect key="frame" x="0.5" y="262" width="319" height="117"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="319" height="117"/>
@@ -98,7 +104,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Comment From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3D-4M-6lf">
                                                     <rect key="frame" x="8" y="8" width="127" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -111,10 +117,15 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <color key="backgroundColor" red="0.058423526585102081" green="0.046944499015808105" blue="0.1677306592464447" alpha="0.10185883620689655" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="commentAuthorLabel" destination="I3D-4M-6lf" id="kSA-eo-n9f"/>
+                                            <outlet property="commentLabel" destination="TXF-6H-Iwn" id="4ap-AN-PJa"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="usp-kc-fVd">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="198"/>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EventHeader" id="usp-kc-fVd" customClass="EventDetailHeaderView">
+                                    <rect key="frame" x="0.0" y="64" width="320" height="198"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMe-VK-UlE">
@@ -144,7 +155,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Event Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGR-bH-ySL">
-                                            <rect key="frame" x="8" y="80" width="159" height="21"/>
+                                            <rect key="frame" x="8" y="80" width="304" height="21"/>
                                             <color key="backgroundColor" red="0.83585590124130249" green="0.9582030177116394" blue="0.90905386209487915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -163,8 +174,24 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tsl-xZ-Htq">
+                                            <rect key="frame" x="8" y="132" width="304" height="21"/>
+                                            <color key="backgroundColor" red="0.83585590124130249" green="0.9582030177116394" blue="0.90905386209487915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
+                                    <connections>
+                                        <outlet property="eventDateHeaderLabel" destination="tGR-bH-ySL" id="26k-oV-Hrj"/>
+                                        <outlet property="eventLocationHeaderLabel" destination="tsl-xZ-Htq" id="XlN-8D-Pao"/>
+                                        <outlet property="eventNameHeaderLabel" destination="0D9-rM-sUo" id="zji-SD-zG0"/>
+                                    </connections>
                                 </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="ZUX-YI-za6" id="jj0-9N-x4e"/>
+                                    <outlet property="delegate" destination="ZUX-YI-za6" id="q5H-dF-wQQ"/>
+                                </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xW1-DY-XjH">
                                 <rect key="frame" x="194" y="481" width="117" height="30"/>
@@ -175,10 +202,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Cxk-RR-fy6"/>
+                    <connections>
+                        <outlet property="collectionView" destination="D53-xC-7PW" id="gpI-y8-nJw"/>
+                        <outlet property="collectionViewFlowLayout" destination="AEf-Pa-9kx" id="kCy-hp-a3s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jPt-sf-kIf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1147" y="1922"/>
+            <point key="canvasLocation" x="1679" y="1922"/>
         </scene>
         <!--Event Album-->
         <scene sceneID="A7X-fA-JRE">
@@ -203,7 +234,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="pRR-g1-xPj">
-                                        <rect key="frame" x="0.0" y="0.0" width="115" height="133"/>
+                                        <rect key="frame" x="0.0" y="64" width="115" height="133"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="115" height="133"/>
@@ -230,12 +261,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H80-oc-5KD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1553" y="1922"/>
+            <point key="canvasLocation" x="2085" y="1922"/>
         </scene>
         <!--Create-->
         <scene sceneID="vTa-zG-4rn">
             <objects>
-                <viewController title="Create" id="BBZ-Ja-Rqe" sceneMemberID="viewController">
+                <viewController title="Create" id="BBZ-Ja-Rqe" customClass="CreateViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bjj-FT-7Jh"/>
                         <viewControllerLayoutGuide type="bottom" id="fDi-4K-tsR"/>
@@ -283,6 +314,9 @@
                                 <rect key="frame" x="254" y="28" width="46" height="30"/>
                                 <color key="backgroundColor" red="0.56922346353530884" green="0.91940498352050781" blue="0.58329463005065918" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="BBZ-Ja-Rqe" eventType="touchUpInside" id="KEl-OW-HUe"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBw-rA-VAq">
                                 <rect key="frame" x="20" y="343" width="42" height="21"/>
@@ -294,6 +328,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Create" id="CBO-1a-K5a"/>
+                    <connections>
+                        <outlet property="dateEntered" destination="IVs-m5-0WF" id="SB4-g9-Vhg"/>
+                        <outlet property="eventEntered" destination="42E-Jn-2q0" id="VbQ-be-OMd"/>
+                        <outlet property="noteEntered" destination="uw6-ju-K4z" id="TNg-da-B6k"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4JP-Lv-wUf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -302,7 +341,7 @@
         <!--Photos-->
         <scene sceneID="cFe-XG-afP">
             <objects>
-                <viewController title="Photos" id="07i-FU-wfn" sceneMemberID="viewController">
+                <viewController title="Photos" id="07i-FU-wfn" customClass="PhotoCollectionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5f2-78-XBl"/>
                         <viewControllerLayoutGuide type="bottom" id="ba4-YA-2CL"/>
@@ -321,16 +360,22 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="iDW-G3-S0L" customClass="PhotoCollectionViewCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="iDW-G3-S0L" customClass="PhotoCollectionViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="119" height="145"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="119" height="145"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dYw-zk-nZS">
+                                                    <rect key="frame" x="0.0" y="0.0" width="119" height="145"/>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="0.73393923044204712" green="0.83374398946762085" blue="0.93788927793502808" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
+                                            <outlet property="photoCell" destination="dYw-zk-nZS" id="YkL-lD-Vwh"/>
                                             <segue destination="9Yp-GG-Emb" kind="push" identifier="FullScreen" id="xaf-co-CKU"/>
                                         </connections>
                                     </collectionViewCell>
@@ -340,10 +385,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Photos" id="yms-Kr-Z5J"/>
+                    <connections>
+                        <outlet property="collectionView" destination="ArN-8z-8AC" id="ia6-Fx-56q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1CR-VD-1zs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1147" y="1277"/>
+            <point key="canvasLocation" x="1679" y="1277"/>
         </scene>
         <!--Full Screen-->
         <scene sceneID="ih4-aj-zoq">
@@ -367,7 +415,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S5f-NI-IGu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1553" y="1277"/>
+            <point key="canvasLocation" x="2085" y="1277"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mBQ-3Q-4Ri">
@@ -379,14 +427,14 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BBZ-Ja-Rqe" kind="relationship" relationship="viewControllers" id="zvc-pt-wTN"/>
-                        <segue destination="CO0-m5-vAE" kind="relationship" relationship="viewControllers" id="7Q8-q2-gPw"/>
-                        <segue destination="07i-FU-wfn" kind="relationship" relationship="viewControllers" id="hNH-Lw-vs5"/>
+                        <segue destination="Ie3-VZ-VBi" kind="relationship" relationship="viewControllers" id="8Nv-er-VZ1"/>
+                        <segue destination="BBZ-Ja-Rqe" kind="relationship" relationship="viewControllers" id="dFc-Rm-u7D"/>
+                        <segue destination="07i-FU-wfn" kind="relationship" relationship="viewControllers" id="mPY-TJ-C8b"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ILe-uM-tAV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="152" y="1277"/>
+            <point key="canvasLocation" x="114" y="1277"/>
         </scene>
         <!--Login-->
         <scene sceneID="Gaj-kt-Fua">
@@ -474,6 +522,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q3O-oB-0Pf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="995" y="19"/>
+        </scene>
+        <!--Library-->
+        <scene sceneID="4Fx-dr-8bV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ie3-VZ-VBi" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Library" id="KBF-YN-AiF"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6dB-Bm-ZAd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CO0-m5-vAE" kind="relationship" relationship="rootViewController" id="dl7-X9-Rpx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sHl-M8-VVM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="692" y="1613"/>
         </scene>
     </scenes>
 </document>

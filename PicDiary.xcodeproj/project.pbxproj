@@ -44,6 +44,9 @@
 		483D84771C6949EB00DD9F6E /* Photo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D846E1C6949EB00DD9F6E /* Photo+CoreDataProperties.m */; };
 		483D84781C6949EB00DD9F6E /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84701C6949EB00DD9F6E /* Photo.m */; };
 		483D847D1C694D4200DD9F6E /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D847C1C694D4200DD9F6E /* TabBarController.m */; };
+		483D84801C696B3D00DD9F6E /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D847F1C696B3D00DD9F6E /* EventDetailViewController.m */; };
+		483D84831C696EA600DD9F6E /* EventDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84821C696EA600DD9F6E /* EventDetailHeaderView.m */; };
+		483D84861C6970C600DD9F6E /* EventDetailCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84851C6970C600DD9F6E /* EventDetailCommentViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +105,12 @@
 		483D84701C6949EB00DD9F6E /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		483D847B1C694D4200DD9F6E /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		483D847C1C694D4200DD9F6E /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
+		483D847E1C696B3D00DD9F6E /* EventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailViewController.h; sourceTree = "<group>"; };
+		483D847F1C696B3D00DD9F6E /* EventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailViewController.m; sourceTree = "<group>"; };
+		483D84811C696EA600DD9F6E /* EventDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailHeaderView.h; sourceTree = "<group>"; };
+		483D84821C696EA600DD9F6E /* EventDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailHeaderView.m; sourceTree = "<group>"; };
+		483D84841C6970C600DD9F6E /* EventDetailCommentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailCommentViewCell.h; sourceTree = "<group>"; };
+		483D84851C6970C600DD9F6E /* EventDetailCommentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailCommentViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +178,12 @@
 				483D84561C693A2A00DD9F6E /* LibraryTableViewController.m */,
 				483D845B1C69424700DD9F6E /* LibraryTableViewCell.h */,
 				483D845C1C69424700DD9F6E /* LibraryTableViewCell.m */,
+				483D847E1C696B3D00DD9F6E /* EventDetailViewController.h */,
+				483D847F1C696B3D00DD9F6E /* EventDetailViewController.m */,
+				483D84811C696EA600DD9F6E /* EventDetailHeaderView.h */,
+				483D84821C696EA600DD9F6E /* EventDetailHeaderView.m */,
+				483D84841C6970C600DD9F6E /* EventDetailCommentViewCell.h */,
+				483D84851C6970C600DD9F6E /* EventDetailCommentViewCell.m */,
 				483D83E11C69202400DD9F6E /* Assets.xcassets */,
 				483D83E31C69202400DD9F6E /* LaunchScreen.storyboard */,
 				483D83E61C69202400DD9F6E /* Info.plist */,
@@ -309,13 +324,16 @@
 				483D84731C6949EB00DD9F6E /* Event+CoreDataProperties.m in Sources */,
 				483D84741C6949EB00DD9F6E /* Event.m in Sources */,
 				483D84761C6949EB00DD9F6E /* User.m in Sources */,
+				483D84861C6970C600DD9F6E /* EventDetailCommentViewCell.m in Sources */,
 				483D845D1C69424700DD9F6E /* LibraryTableViewCell.m in Sources */,
 				483D83D71C69202400DD9F6E /* AppDelegate.m in Sources */,
 				483D84541C693A0A00DD9F6E /* PhotoCollectionViewController.m in Sources */,
 				483D84781C6949EB00DD9F6E /* Photo.m in Sources */,
 				483D845A1C693A5B00DD9F6E /* CreateViewController.m in Sources */,
 				483D84771C6949EB00DD9F6E /* Photo+CoreDataProperties.m in Sources */,
+				483D84801C696B3D00DD9F6E /* EventDetailViewController.m in Sources */,
 				483D84571C693A2A00DD9F6E /* LibraryTableViewController.m in Sources */,
+				483D84831C696EA600DD9F6E /* EventDetailHeaderView.m in Sources */,
 				483D83E01C69202400DD9F6E /* PicDiary.xcdatamodeld in Sources */,
 				483D83D41C69202400DD9F6E /* main.m in Sources */,
 				483D84711C6949EB00DD9F6E /* Album+CoreDataProperties.m in Sources */,
