@@ -18,12 +18,15 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *collectionViewFlowLayout;
 
+@property (nonatomic) NSMutableSet *eventPhotos;
+
 @property (nonatomic) NSMutableArray *photos;
+
 @property (nonatomic) Album *eventAlbum;
 
 @property (nonatomic) Album *anotherEventAlbum;
 
-@property (nonatomic) NSArray *allPhotosInAlbum;
+@property (nonatomic) NSMutableArray *allPhotosInAlbum;
 
 @end
 
@@ -32,6 +35,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.photos = [[NSMutableArray alloc] init];
+    self.allPhotosInAlbum = [[NSMutableArray alloc] init];
+    
+    self.eventPhotos = [self.eventSelected.photos mutableCopy];
+    
+    [self UpdatePhotoArray];
     
     self.photoLayout = [[UICollectionViewFlowLayout alloc] init];
     self.photoLayout.itemSize = CGSizeMake(105, 150);
@@ -55,38 +63,26 @@
 }
 
 - (void)UpdatePhotoArray {
-    [self.photos removeAllObjects];
-    
-//    Photo *onePhoto = [[Photo alloc] init];
-//    onePhoto.image = [UIImage imageNamed:@"Sunset.jpg"] ;
-//    //[UIImage imageWithData:onePhoto.image];
-//    [self.eventAlbum addPhotoObject:onePhoto];
-//    [self.eventAlbum addPhotoObject:onePhoto];
-//    [self.eventAlbum addPhotoObject:onePhoto];
-
-
+    self.photos = [[self.eventSelected.photos allObjects] mutableCopy];
     
 }
 
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
     return 1;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
-    return 9;
+    NSLog(@"%d", self.photos.count);
+    return self.photos.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     AlbumPhotoViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
-    //cell.backgroundColor = [UIColor redColor];
-    
-    cell.imageView.image = [UIImage imageNamed:@"Sunset.JPG"];
-    // Configure the cell
+    Photo *cellPhoto = [self.photos objectAtIndex:indexPath.row];
+    cell.imageView.image = cellPhoto.image;
     
     return cell;
 }
@@ -112,17 +108,29 @@
     
     [self presentViewController:picker animated:YES completion:NULL];
     
-    
 }
 
 #pragma mark - Image Picker Controller delegate methods
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     NSLog(@"Image Choosen");
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    //self.imageView.image = chosenImage;
     
+    
+    NSManagedObjectContext *context = self.managedObjectContext;
+
+    Photo *photoObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:context];
+    photoObject.image = info[UIImagePickerControllerOriginalImage];
+    
+    [self.eventPhotos addObject:photoObject];
+    self.eventSelected.photos = self.eventPhotos;
+    
+    NSError *error = nil;
+    if (![context save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
     [picker dismissViewControllerAnimated:YES completion:NULL];
+    
     
 }
 
