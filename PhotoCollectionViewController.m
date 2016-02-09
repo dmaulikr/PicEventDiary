@@ -12,6 +12,9 @@
 
 @interface PhotoCollectionViewController ()
 
+
+@property (strong,nonatomic) UICollectionViewFlowLayout* photoLayout;
+
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -20,7 +23,7 @@
 
 @implementation PhotoCollectionViewController
 
-static NSString * const reuseIdentifier = @"Cell";
+//static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,11 +32,19 @@ static NSString * const reuseIdentifier = @"Cell";
     
     self.managedObjectContext = appDelegate.managedObjectContext;
     
+    self.photoLayout = [[UICollectionViewFlowLayout alloc] init];
+    self.photoLayout.itemSize = CGSizeMake(105, 200);
+    self.photoLayout.minimumInteritemSpacing = 2;
+    self.photoLayout.minimumLineSpacing = 3;
+    //self.photoLayout.headerReferenceSize = CGSizeMake(150, 30);
+    
+    self.collectionView.collectionViewLayout = self.photoLayout;
+    
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    //[self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     // Do any additional setup after loading the view.
 }
@@ -56,19 +67,21 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#warning Incomplete implementation, return the number of sections
+
     return 1;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of items
-    return 1;
+
+    return 9;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"photoCell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor redColor];
+    //cell.backgroundColor = [UIColor redColor];
+    
+    cell.photoCell.image = [UIImage imageNamed:@"Sunset.JPG"];
     // Configure the cell
     
     return cell;

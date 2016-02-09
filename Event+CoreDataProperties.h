@@ -2,7 +2,7 @@
 //  Event+CoreDataProperties.h
 //  PicDiary
 //
-//  Created by Narendra Thapa on 2016-02-08.
+//  Created by Narendra Thapa on 2016-02-09.
 //  Copyright © 2016 Narendra Thapa. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -10,6 +10,7 @@
 //
 
 #import "Event.h"
+#import "Photo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,7 +19,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *eventName;
 @property (nonatomic) NSTimeInterval date;
 @property (nullable, nonatomic, retain) NSString *note;
-@property (nullable, nonatomic, retain) Album *album;
+@property (nullable, nonatomic, retain) NSSet<Photo *> *photos;
+
+@end
+
+@interface Event (CoreDataGeneratedAccessors)
+
+- (void)addPhotosObject:(Photo *)value;
+- (void)removePhotosObject:(Photo *)value;
+- (void)addPhotos:(NSSet<Photo *> *)values;
+- (void)removePhotos:(NSSet<Photo *> *)values;
 
 @end
 

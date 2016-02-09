@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "EventDetailHeaderView.h"
 #import "EventDetailCommentViewCell.h"
+#import "EventAlbumViewController.h"
 
 @interface EventDetailViewController ()
 
@@ -67,7 +68,23 @@
     return header;
 }
 
+#pragma mark - Segues
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier] isEqualToString:@"toEventPhotos"]) {
+        
+        EventAlbumViewController *eventAlbumViewController = (EventAlbumViewController *)[segue destinationViewController];
+        NSLog(@"toEventPhotos");
+//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+//        Event *eventSelected = [self.event objectAtIndex:indexPath.row];
+//        NSLog(@"%@", eventSelected.eventName);
+        
+        eventAlbumViewController.eventSelected = self.eventSelected;
+        eventAlbumViewController.managedObjectContext = self.managedObjectContext;
+    }
+    
+}
 
 /*
 #pragma mark - Navigation

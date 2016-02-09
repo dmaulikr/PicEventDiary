@@ -72,6 +72,8 @@
                         }
                     }];
     
+    self.eventEntered.text = @"";
+    self.noteEntered.text = @"";
 }
 
 

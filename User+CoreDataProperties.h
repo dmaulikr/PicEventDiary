@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.h
 //  PicDiary
 //
-//  Created by Narendra Thapa on 2016-02-08.
+//  Created by Narendra Thapa on 2016-02-09.
 //  Copyright © 2016 Narendra Thapa. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
