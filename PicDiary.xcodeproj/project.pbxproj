@@ -50,6 +50,7 @@
 		483D84891C697BD100DD9F6E /* EventAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84881C697BD100DD9F6E /* EventAlbumViewController.m */; };
 		483D848B1C697E2300DD9F6E /* Sunset.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 483D848A1C697E2300DD9F6E /* Sunset.JPG */; };
 		483D848E1C6A500500DD9F6E /* AlbumPhotoViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D848D1C6A500400DD9F6E /* AlbumPhotoViewCell.m */; };
+		483D84941C6A88AB00DD9F6E /* FullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84931C6A88AB00DD9F6E /* FullScreenViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +120,8 @@
 		483D848A1C697E2300DD9F6E /* Sunset.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Sunset.JPG; path = "../../../Pictures/Photos Library.photoslibrary/Masters/2016/01/27/20160127-161844/Sunset.JPG"; sourceTree = "<group>"; };
 		483D848C1C6A500400DD9F6E /* AlbumPhotoViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumPhotoViewCell.h; sourceTree = "<group>"; };
 		483D848D1C6A500400DD9F6E /* AlbumPhotoViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumPhotoViewCell.m; sourceTree = "<group>"; };
+		483D84921C6A88AB00DD9F6E /* FullScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenViewController.h; sourceTree = "<group>"; };
+		483D84931C6A88AB00DD9F6E /* FullScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +185,8 @@
 				483D84531C693A0A00DD9F6E /* PhotoCollectionViewController.m */,
 				483D845E1C69427100DD9F6E /* PhotoCollectionViewCell.h */,
 				483D845F1C69427100DD9F6E /* PhotoCollectionViewCell.m */,
+				483D84921C6A88AB00DD9F6E /* FullScreenViewController.h */,
+				483D84931C6A88AB00DD9F6E /* FullScreenViewController.m */,
 				483D84551C693A2A00DD9F6E /* LibraryTableViewController.h */,
 				483D84561C693A2A00DD9F6E /* LibraryTableViewController.m */,
 				483D845B1C69424700DD9F6E /* LibraryTableViewCell.h */,
@@ -354,6 +359,7 @@
 				483D84891C697BD100DD9F6E /* EventAlbumViewController.m in Sources */,
 				483D84711C6949EB00DD9F6E /* Album+CoreDataProperties.m in Sources */,
 				483D84721C6949EB00DD9F6E /* Album.m in Sources */,
+				483D84941C6A88AB00DD9F6E /* FullScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

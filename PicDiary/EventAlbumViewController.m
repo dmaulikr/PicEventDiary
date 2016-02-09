@@ -10,6 +10,7 @@
 #import "AlbumPhotoViewCell.h"
 #import "Photo.h"
 #import "Album.h"
+#import "FullScreenViewController.h"
 
 @interface EventAlbumViewController ()
 
@@ -137,6 +138,24 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+#pragma mark - Segues
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier] isEqualToString:@"fullScreenFromAlbum"]) {
+        
+        FullScreenViewController *FSViewController = (FullScreenViewController *)[segue destinationViewController];
+        
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:sender];
+        Photo *photoSelected = [self.photos objectAtIndex:indexPath.row];
+        NSLog(@"Photo Selected");
+        
+        FSViewController.selectedPhoto = photoSelected;
+        FSViewController.managedObjectContext = self.managedObjectContext;
+    }
     
 }
 

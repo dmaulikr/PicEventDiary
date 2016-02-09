@@ -254,6 +254,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="wtW-ro-m3U" id="Leq-z1-NxT"/>
+                                            <segue destination="9Yp-GG-Emb" kind="push" identifier="fullScreenFromAlbum" id="4uy-WZ-mAC"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -425,6 +426,7 @@
                     <navigationItem key="navigationItem" id="g0D-I5-31q"/>
                     <connections>
                         <outlet property="collectionView" destination="ArN-8z-8AC" id="ia6-Fx-56q"/>
+                        <outlet property="collectionViewFlowLayout" destination="6qI-oU-Hgx" id="gIf-8B-zGq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1CR-VD-1zs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -434,7 +436,7 @@
         <!--Full Screen-->
         <scene sceneID="ih4-aj-zoq">
             <objects>
-                <viewController title="Full Screen" id="9Yp-GG-Emb" sceneMemberID="viewController">
+                <viewController title="Full Screen" id="9Yp-GG-Emb" customClass="FullScreenViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xb5-aU-qbp"/>
                         <viewControllerLayoutGuide type="bottom" id="IGL-7k-K4M"/>
@@ -450,10 +452,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Aq6-C2-TNi"/>
+                    <connections>
+                        <outlet property="fullScreenImage" destination="IVn-XQ-wGk" id="Kd3-l8-EyV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S5f-NI-IGu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2617" y="1277"/>
+            <point key="canvasLocation" x="2739" y="1481"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mBQ-3Q-4Ri">
@@ -600,4 +605,7 @@
             <point key="canvasLocation" x="1679" y="1277"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="4uy-WZ-mAC"/>
+    </inferredMetricsTieBreakers>
 </document>

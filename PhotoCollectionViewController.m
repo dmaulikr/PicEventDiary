@@ -9,6 +9,8 @@
 #import "PhotoCollectionViewController.h"
 #import "PhotoCollectionViewCell.h"
 #import "AppDelegate.h"
+#import "Photo.h"
+#import "FullScreenViewController.h"
 
 @interface PhotoCollectionViewController ()
 
@@ -16,8 +18,11 @@
 @property (strong,nonatomic) UICollectionViewFlowLayout* photoLayout;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *collectionViewFlowLayout;
 
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
+
+@property (nonatomic) NSArray *photo;
 
 @end
 
@@ -33,12 +38,19 @@
     self.managedObjectContext = appDelegate.managedObjectContext;
     
     self.photoLayout = [[UICollectionViewFlowLayout alloc] init];
-    self.photoLayout.itemSize = CGSizeMake(105, 200);
-    self.photoLayout.minimumInteritemSpacing = 2;
-    self.photoLayout.minimumLineSpacing = 3;
+    self.photoLayout.itemSize = CGSizeMake(105, 150);
+    self.photoLayout.minimumInteritemSpacing = 1;
+    self.photoLayout.minimumLineSpacing = 1;
     //self.photoLayout.headerReferenceSize = CGSizeMake(150, 30);
     
     self.collectionView.collectionViewLayout = self.photoLayout;
+    
+    NSError *errR = nil;
+    NSFetchRequest *fetchRequestR = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityR = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequestR setEntity:entityR];
+    
+    self.photo = [self.managedObjectContext executeFetchRequest:fetchRequestR error:&errR];
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -67,25 +79,40 @@
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-
     return 1;
 }
 
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-
-    return 9;
+    return self.photo.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    PhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"photoCell" forIndexPath:indexPath];
-    //cell.backgroundColor = [UIColor redColor];
     
-    cell.photoCell.image = [UIImage imageNamed:@"Sunset.JPG"];
-    // Configure the cell
+    PhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"photoCell" forIndexPath:indexPath];
+    Photo *cellPhoto = [self.photo objectAtIndex:indexPath.row];
+    cell.photoCell.image = cellPhoto.image;
     
     return cell;
 }
+
+#pragma mark - Segues
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier] isEqualToString:@"FullScreen"]) {
+        
+        FullScreenViewController *FSViewController = (FullScreenViewController *)[segue destinationViewController];
+        
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:sender];
+        Photo *photoSelected = [self.photo objectAtIndex:indexPath.row];
+        NSLog(@"Photo Selected");
+        
+        FSViewController.selectedPhoto = photoSelected;
+        FSViewController.managedObjectContext = self.managedObjectContext;
+    }
+    
+}
+
 
 #pragma mark <UICollectionViewDelegate>
 
