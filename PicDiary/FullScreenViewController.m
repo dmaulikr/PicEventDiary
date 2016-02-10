@@ -25,11 +25,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.selectedPhoto = [self.photo objectAtIndex:self.itemIndex];
+    
     self.comments = [[NSMutableArray alloc] init];
     self.photoComments = [self.selectedPhoto.commentPhoto mutableCopy];
     
     //self.fullScreenImage.image = self.selectedPhoto.image;
-    
     // Do any additional setup after loading the view.
 }
 
@@ -46,7 +47,6 @@
 
 - (void)UpdateCommentsArray {
     self.comments = [self.selectedPhoto.commentPhoto.array  mutableCopy];;
-    
 }
 
 
@@ -59,6 +59,7 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     NSLog(@"Number of comments %lu", (unsigned long)self.comments.count);
     return self.comments.count;
+    //return 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -67,6 +68,7 @@
     cell.authorLabel.text = @"Narendra";
     Comment *cellComment = [self.comments objectAtIndex:indexPath.row];
     cell.commentLabel.text = cellComment.comment;
+//    cell.commentLabel.text = @"Comments here";
     
     return cell;
 }
@@ -74,14 +76,16 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     PhotoFullScreenImageHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"FullScreenImage" forIndexPath:indexPath];
+    header.imageView.backgroundColor = [UIColor blackColor];
+    header.imageView.contentMode = UIViewContentModeScaleAspectFit;
     header.imageView.image = self.selectedPhoto.image;
-
+//    header.imageView.image = [UIImage imageNamed:@"Sunset.JPG"];
     
     return header;
 }
 
 - (IBAction)commentButtonPressed:(UIButton *)sender {
-    UIAlertController *alert= [UIAlertController alertControllerWithTitle:@"Enter Folder Name"
+    UIAlertController *alert= [UIAlertController alertControllerWithTitle:@"Comment Window"
                                                                   message:@"Keep it short and sweet"
                                                            preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault

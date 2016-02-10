@@ -436,10 +436,18 @@
             </objects>
             <point key="canvasLocation" x="2211" y="1277"/>
         </scene>
+        <!--Page View Controller-->
+        <scene sceneID="aoL-Q6-7BN">
+            <objects>
+                <pageViewController storyboardIdentifier="PageController" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="d2I-UF-FB2" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q1V-Xi-pjI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2691" y="1613"/>
+        </scene>
         <!--Full Screen-->
         <scene sceneID="ih4-aj-zoq">
             <objects>
-                <viewController title="Full Screen" id="9Yp-GG-Emb" customClass="FullScreenViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ItemController" title="Full Screen" id="9Yp-GG-Emb" customClass="FullScreenViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xb5-aU-qbp"/>
                         <viewControllerLayoutGuide type="bottom" id="IGL-7k-K4M"/>
@@ -673,6 +681,10 @@
         <scene sceneID="QLr-Kl-4bw">
             <objects>
                 <viewController id="bHZ-01-ERT" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iYM-i9-hvG"/>
+                        <viewControllerLayoutGuide type="bottom" id="NYD-ov-Imo"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ugf-Tl-X7J">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -684,6 +696,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4uy-WZ-mAC"/>
+        <segue reference="xaf-co-CKU"/>
     </inferredMetricsTieBreakers>
 </document>

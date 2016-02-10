@@ -107,7 +107,7 @@
 }
 
 - (IBAction)commentButtonPressed:(UIButton *)sender {
-    UIAlertController *alert= [UIAlertController alertControllerWithTitle:@"Enter Folder Name"
+    UIAlertController *alert= [UIAlertController alertControllerWithTitle:@"Comment Window"
                                                                   message:@"Keep it short and sweet"
                                                            preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault

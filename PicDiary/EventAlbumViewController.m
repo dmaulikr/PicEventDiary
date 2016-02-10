@@ -65,7 +65,6 @@
 
 - (void)UpdatePhotoArray {
     self.photos = [[self.eventSelected.photos allObjects] mutableCopy];
-    
 }
 
 #pragma mark <UICollectionViewDataSource>

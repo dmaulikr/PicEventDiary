@@ -49,7 +49,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)UpdateArraysWithEvents {
+- (void)UpdateArraysWithEvents {
     
     [self.event removeAllObjects];
     
@@ -64,7 +64,7 @@
     
 }
 
--(void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self UpdateArraysWithEvents];
     [self.tableView reloadData];
