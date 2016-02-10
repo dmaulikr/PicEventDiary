@@ -51,6 +51,10 @@
 		483D848B1C697E2300DD9F6E /* Sunset.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 483D848A1C697E2300DD9F6E /* Sunset.JPG */; };
 		483D848E1C6A500500DD9F6E /* AlbumPhotoViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D848D1C6A500400DD9F6E /* AlbumPhotoViewCell.m */; };
 		483D84941C6A88AB00DD9F6E /* FullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84931C6A88AB00DD9F6E /* FullScreenViewController.m */; };
+		483D84991C6AADAB00DD9F6E /* Comment+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84961C6AADAB00DD9F6E /* Comment+CoreDataProperties.m */; };
+		483D849A1C6AADAB00DD9F6E /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84981C6AADAB00DD9F6E /* Comment.m */; };
+		483D849D1C6AC9F000DD9F6E /* PhotoCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D849C1C6AC9F000DD9F6E /* PhotoCommentViewCell.m */; };
+		483D84A01C6ACA1F00DD9F6E /* PhotoFullScreenImageHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D849F1C6ACA1F00DD9F6E /* PhotoFullScreenImageHeader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +126,14 @@
 		483D848D1C6A500400DD9F6E /* AlbumPhotoViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumPhotoViewCell.m; sourceTree = "<group>"; };
 		483D84921C6A88AB00DD9F6E /* FullScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenViewController.h; sourceTree = "<group>"; };
 		483D84931C6A88AB00DD9F6E /* FullScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenViewController.m; sourceTree = "<group>"; };
+		483D84951C6AADAB00DD9F6E /* Comment+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Comment+CoreDataProperties.h"; sourceTree = "<group>"; };
+		483D84961C6AADAB00DD9F6E /* Comment+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Comment+CoreDataProperties.m"; sourceTree = "<group>"; };
+		483D84971C6AADAB00DD9F6E /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		483D84981C6AADAB00DD9F6E /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		483D849B1C6AC9F000DD9F6E /* PhotoCommentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCommentViewCell.h; sourceTree = "<group>"; };
+		483D849C1C6AC9F000DD9F6E /* PhotoCommentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCommentViewCell.m; sourceTree = "<group>"; };
+		483D849E1C6ACA1F00DD9F6E /* PhotoFullScreenImageHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoFullScreenImageHeader.h; sourceTree = "<group>"; };
+		483D849F1C6ACA1F00DD9F6E /* PhotoFullScreenImageHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoFullScreenImageHeader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +199,10 @@
 				483D845F1C69427100DD9F6E /* PhotoCollectionViewCell.m */,
 				483D84921C6A88AB00DD9F6E /* FullScreenViewController.h */,
 				483D84931C6A88AB00DD9F6E /* FullScreenViewController.m */,
+				483D849B1C6AC9F000DD9F6E /* PhotoCommentViewCell.h */,
+				483D849C1C6AC9F000DD9F6E /* PhotoCommentViewCell.m */,
+				483D849E1C6ACA1F00DD9F6E /* PhotoFullScreenImageHeader.h */,
+				483D849F1C6ACA1F00DD9F6E /* PhotoFullScreenImageHeader.m */,
 				483D84551C693A2A00DD9F6E /* LibraryTableViewController.h */,
 				483D84561C693A2A00DD9F6E /* LibraryTableViewController.m */,
 				483D845B1C69424700DD9F6E /* LibraryTableViewCell.h */,
@@ -245,6 +261,10 @@
 		483D847A1C694A1100DD9F6E /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				483D84951C6AADAB00DD9F6E /* Comment+CoreDataProperties.h */,
+				483D84961C6AADAB00DD9F6E /* Comment+CoreDataProperties.m */,
+				483D84971C6AADAB00DD9F6E /* Comment.h */,
+				483D84981C6AADAB00DD9F6E /* Comment.m */,
 				483D84611C6949EB00DD9F6E /* Album+CoreDataProperties.h */,
 				483D84621C6949EB00DD9F6E /* Album+CoreDataProperties.m */,
 				483D84631C6949EB00DD9F6E /* Album.h */,
@@ -347,15 +367,19 @@
 				483D84861C6970C600DD9F6E /* EventDetailCommentViewCell.m in Sources */,
 				483D845D1C69424700DD9F6E /* LibraryTableViewCell.m in Sources */,
 				483D83D71C69202400DD9F6E /* AppDelegate.m in Sources */,
+				483D849D1C6AC9F000DD9F6E /* PhotoCommentViewCell.m in Sources */,
 				483D84541C693A0A00DD9F6E /* PhotoCollectionViewController.m in Sources */,
 				483D84781C6949EB00DD9F6E /* Photo.m in Sources */,
 				483D845A1C693A5B00DD9F6E /* CreateViewController.m in Sources */,
 				483D84771C6949EB00DD9F6E /* Photo+CoreDataProperties.m in Sources */,
+				483D84A01C6ACA1F00DD9F6E /* PhotoFullScreenImageHeader.m in Sources */,
 				483D84801C696B3D00DD9F6E /* EventDetailViewController.m in Sources */,
+				483D84991C6AADAB00DD9F6E /* Comment+CoreDataProperties.m in Sources */,
 				483D84571C693A2A00DD9F6E /* LibraryTableViewController.m in Sources */,
 				483D84831C696EA600DD9F6E /* EventDetailHeaderView.m in Sources */,
 				483D83E01C69202400DD9F6E /* PicDiary.xcdatamodeld in Sources */,
 				483D83D41C69202400DD9F6E /* main.m in Sources */,
+				483D849A1C6AADAB00DD9F6E /* Comment.m in Sources */,
 				483D84891C697BD100DD9F6E /* EventAlbumViewController.m in Sources */,
 				483D84711C6949EB00DD9F6E /* Album+CoreDataProperties.m in Sources */,
 				483D84721C6949EB00DD9F6E /* Album.m in Sources */,

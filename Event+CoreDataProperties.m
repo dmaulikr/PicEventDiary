@@ -17,5 +17,6 @@
 @dynamic date;
 @dynamic note;
 @dynamic photos;
+@dynamic commentEvent;
 
 @end

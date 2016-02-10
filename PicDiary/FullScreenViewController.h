@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "Photo.h"
 
-@interface FullScreenViewController : UIViewController
+@interface FullScreenViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property (weak, nonatomic) IBOutlet UIImageView *fullScreenImage;
+
+//@property (weak, nonatomic) IBOutlet UIImageView *fullScreenImage;
 
 @property (nonatomic) Photo *selectedPhoto;
 

@@ -71,7 +71,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gKB-2W-eUa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1224" y="1613"/>
+            <point key="canvasLocation" x="1154" y="1613"/>
         </scene>
         <!--Event Details-->
         <scene sceneID="438-A4-r5I">
@@ -86,7 +86,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="D53-xC-7PW">
-                                <rect key="frame" x="0.0" y="28" width="320" height="491"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <color key="backgroundColor" red="0.89999955892562866" green="0.97351986169815063" blue="0.93648499250411987" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AEf-Pa-9kx">
                                     <size key="itemSize" width="319" height="117"/>
@@ -197,6 +197,9 @@
                                 <rect key="frame" x="194" y="481" width="117" height="30"/>
                                 <color key="backgroundColor" red="0.83273452520370483" green="0.91734331846237183" blue="0.95511096715927124" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Add Comment"/>
+                                <connections>
+                                    <action selector="commentButtonPressed:" destination="ZUX-YI-za6" eventType="touchUpInside" id="UOF-1Q-Dcn"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -290,7 +293,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H80-oc-5KD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2085" y="1922"/>
+            <point key="canvasLocation" x="2211" y="1922"/>
         </scene>
         <!--Create-->
         <scene sceneID="vTa-zG-4rn">
@@ -445,20 +448,82 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IVn-XQ-wGk">
-                                <rect key="frame" x="20" y="81" width="280" height="295"/>
-                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2oo-sL-GbI">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <color key="backgroundColor" red="0.97248035669326782" green="0.97739392518997192" blue="0.92734414339065552" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xO1-8e-BDk">
+                                    <size key="itemSize" width="312" height="100"/>
+                                    <size key="headerReferenceSize" width="50" height="276"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCommentCell" id="UEI-Nj-Hcm" customClass="PhotoCommentViewCell">
+                                        <rect key="frame" x="4" y="340" width="312" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="312" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQe-TV-lIG">
+                                                    <rect key="frame" x="8" y="8" width="162" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Comment" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5o-oG-RXF">
+                                                    <rect key="frame" x="8" y="34" width="296" height="54"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="0.091038711369037628" green="0.19701775908470154" blue="0.43813484907150269" alpha="0.080980603448275859" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="authorLabel" destination="yQe-TV-lIG" id="y3d-8x-Q4X"/>
+                                            <outlet property="commentLabel" destination="m5o-oG-RXF" id="7CR-Lt-IRx"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FullScreenImage" id="iAa-hQ-aTj" customClass="PhotoFullScreenImageHeader">
+                                    <rect key="frame" x="0.0" y="64" width="320" height="276"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vb3-pb-Bil">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="276"/>
+                                        </imageView>
+                                    </subviews>
+                                    <connections>
+                                        <outlet property="imageView" destination="vb3-pb-Bil" id="pdc-34-Ul0"/>
+                                    </connections>
+                                </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="9Yp-GG-Emb" id="cSh-XO-5dl"/>
+                                    <outlet property="delegate" destination="9Yp-GG-Emb" id="1WW-U7-omA"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZ4-kK-tcW">
+                                <rect key="frame" x="218" y="489" width="102" height="30"/>
+                                <color key="backgroundColor" red="0.9436720609664917" green="0.84394091367721558" blue="0.77207326889038086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Add Comment"/>
+                                <connections>
+                                    <action selector="commentButtonPressed:" destination="9Yp-GG-Emb" eventType="touchUpInside" id="3FT-3a-gih"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Aq6-C2-TNi"/>
                     <connections>
-                        <outlet property="fullScreenImage" destination="IVn-XQ-wGk" id="Kd3-l8-EyV"/>
+                        <outlet property="collectionView" destination="2oo-sL-GbI" id="DaN-q8-gza"/>
+                        <outlet property="collectionViewFlowLayout" destination="xO1-8e-BDk" id="xBP-HD-7MB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S5f-NI-IGu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2739" y="1481"/>
+            <point key="canvasLocation" x="2751" y="1587"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mBQ-3Q-4Ri">

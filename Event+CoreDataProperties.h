@@ -11,6 +11,7 @@
 
 #import "Event.h"
 #import "Photo.h"
+#import "Comment.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSTimeInterval date;
 @property (nullable, nonatomic, retain) NSString *note;
 @property (nullable, nonatomic, retain) NSSet<Photo *> *photos;
+@property (nullable, nonatomic, retain) NSOrderedSet<Comment *> *commentEvent;
 
 @end
 
@@ -29,6 +31,17 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removePhotosObject:(Photo *)value;
 - (void)addPhotos:(NSSet<Photo *> *)values;
 - (void)removePhotos:(NSSet<Photo *> *)values;
+
+- (void)insertObject:(Comment *)value inCommentEventAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromCommentEventAtIndex:(NSUInteger)idx;
+- (void)insertCommentEvent:(NSArray<Comment *> *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeCommentEventAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInCommentEventAtIndex:(NSUInteger)idx withObject:(Comment *)value;
+- (void)replaceCommentEventAtIndexes:(NSIndexSet *)indexes withCommentEvent:(NSArray<Comment *> *)values;
+- (void)addCommentEventObject:(Comment *)value;
+- (void)removeCommentEventObject:(Comment *)value;
+- (void)addCommentEvent:(NSOrderedSet<Comment *> *)values;
+- (void)removeCommentEvent:(NSOrderedSet<Comment *> *)values;
 
 @end
 

@@ -1,5 +1,5 @@
 //
-//  Photo+CoreDataProperties.m
+//  Comment+CoreDataProperties.m
 //  PicDiary
 //
 //  Created by Narendra Thapa on 2016-02-09.
@@ -9,14 +9,13 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Photo+CoreDataProperties.h"
+#import "Comment+CoreDataProperties.h"
 
-@implementation Photo (CoreDataProperties)
+@implementation Comment (CoreDataProperties)
 
-@dynamic image;
-@dynamic likeCount;
-@dynamic imageName;
-@dynamic event;
-@dynamic commentPhoto;
+@dynamic date;
+@dynamic comment;
+@dynamic photos;
+@dynamic events;
 
 @end
