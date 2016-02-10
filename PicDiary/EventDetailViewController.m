@@ -128,6 +128,8 @@
                                                        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
                                                        abort();
                                                    }
+                                                   [self UpdateCommentsArray];
+                                                   [self.collectionView reloadData];
                                                    
                                                }];
     UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
@@ -142,6 +144,8 @@
         textField.placeholder = @"Comments Please";
         textField.keyboardType = UIKeyboardTypeDefault;
     }];
+    
+    
     
     [self presentViewController:alert animated:YES completion:nil];
 }

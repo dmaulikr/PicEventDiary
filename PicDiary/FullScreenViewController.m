@@ -87,9 +87,9 @@
     UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                handler:^(UIAlertAction * action){
                                                    //Do Some action here
-                                                   NSManagedObjectContext *context = self.managedObjectContext;
+                NSManagedObjectContext *context = self.managedObjectContext;
                                                    
-                                                   Comment *commentObject = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:context];
+                Comment *commentObject = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:context];
                                                    
                                                    UITextField *textField = alert.textFields[0];
                                                    NSLog(@"text was %@", textField.text);
@@ -102,6 +102,8 @@
                                                        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
                                                        abort();
                                                    }
+                                                   [self UpdateCommentsArray];
+                                                   [self.collectionView reloadData];
                                                    
                                                }];
     UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
@@ -116,6 +118,8 @@
         textField.placeholder = @"Comments Please";
         textField.keyboardType = UIKeyboardTypeDefault;
     }];
+    
+    
     
     [self presentViewController:alert animated:YES completion:nil];
 }
