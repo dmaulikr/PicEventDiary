@@ -12,6 +12,7 @@
 @interface DetailMapViewController ()
 
 @property (nonatomic, weak) IBOutlet MKMapView *mapView;
+
 @property (nonatomic, strong) PlaceAnnotation *annotation;
 
 @property (nonatomic) NSString *locationName;
@@ -33,16 +34,22 @@
     
     // We add the placemarks here to get the "drop" animation.
         
-        MKMapItem *mapItem = [self.mapItemList objectAtIndex:0];
+ //       MKMapItem *mapItem = [self.mapItemList objectAtIndex:0];
+        //MKMapItem *mapItem = self.eventLocation;
         
-        self.title = mapItem.name;
-        
+        //self.title = mapItem.name;
+        self.title = self.eventLocationName;
+    
+    
         // Add the single annotation to our map.
         PlaceAnnotation *annotation = [[PlaceAnnotation alloc] init];
-        annotation.coordinate = mapItem.placemark.location.coordinate;
-        annotation.title = mapItem.name;
-        self.locationName = mapItem.name;
-        annotation.url = mapItem.url;
+        //annotation.coordinate = mapItem.placemark.location.coordinate;
+        annotation.coordinate = CLLocationCoordinate2DMake(self.eventLocationLatitude,self.eventLocationLongitude);
+        //annotation.title = mapItem.name;
+        annotation.title = self.eventLocationName;
+        //self.locationName = mapItem.name;
+        //annotation.url = mapItem.url;
+    
         [self.mapView addAnnotation:annotation];
         
         // We have only one annotation, select it's callout.

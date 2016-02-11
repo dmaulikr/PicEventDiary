@@ -2,7 +2,7 @@
 //  Comment+CoreDataProperties.m
 //  PicDiary
 //
-//  Created by Narendra Thapa on 2016-02-09.
+//  Created by Narendra Thapa on 2016-02-11.
 //  Copyright © 2016 Narendra Thapa. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,9 +13,10 @@
 
 @implementation Comment (CoreDataProperties)
 
-@dynamic date;
 @dynamic comment;
-@dynamic photos;
+@dynamic date;
 @dynamic events;
+@dynamic photos;
+@dynamic user;
 
 @end

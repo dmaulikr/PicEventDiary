@@ -11,6 +11,7 @@
 #import "EventDetailHeaderView.h"
 #import "EventDetailCommentViewCell.h"
 #import "EventAlbumViewController.h"
+#import "DetailMapViewController.h"
 
 @interface EventDetailViewController ()
 
@@ -83,7 +84,7 @@
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
     dateformatter.dateFormat = @"EEE MMM d, yyyy HH:mm a";
     header.eventDateHeaderLabel.text = [dateformatter stringFromDate:eventDate];
-    header.eventLocationHeaderLabel.text = self.eventSelected.note;
+    header.eventLocationHeaderLabel.titleLabel.text = self.eventSelected.locationName;
     
     return header;
 }
@@ -102,6 +103,14 @@
         
         eventAlbumViewController.eventSelected = self.eventSelected;
         eventAlbumViewController.managedObjectContext = self.managedObjectContext;
+    }
+    else if ([[segue identifier] isEqualToString:@"locationDetail"]) {
+        
+        DetailMapViewController *detailMapViewController = (DetailMapViewController *)[segue destinationViewController];
+        detailMapViewController.eventLocationName = self.eventSelected.locationName;
+        detailMapViewController.eventLocationLatitude = self.eventSelected.locationLatitude;
+        detailMapViewController.eventLocationLongitude = self.eventSelected.locationLongitude;
+        
     }
     
 }

@@ -14,7 +14,7 @@
 @property (nonatomic, weak) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) PlaceAnnotation *annotation;
 
-@property (nonatomic) NSString *locationName;
+
 
 @end
 
@@ -41,7 +41,7 @@
         PlaceAnnotation *annotation = [[PlaceAnnotation alloc] init];
         annotation.coordinate = mapItem.placemark.location.coordinate;
         annotation.title = mapItem.name;
-        self.locationName = mapItem.name;
+        self.location = mapItem;
         annotation.url = mapItem.url;
         [self.mapView addAnnotation:annotation];
         
@@ -100,7 +100,7 @@
 }
 - (IBAction)locationSelected:(UIBarButtonItem *)sender {
     
-    self.createViewController.locationName = self.locationName;
+    self.createViewController.locationName = self.location;
     
     [self.navigationController popToViewController:(self.createViewController) animated:YES];
     

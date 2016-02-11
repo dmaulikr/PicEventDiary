@@ -11,6 +11,12 @@
 
 @interface DetailMapViewController : UIViewController
 
+@property (nonatomic) MKMapItem *eventLocation;
+
+@property (nonatomic) NSString *eventLocationName;
+@property (nonatomic) float eventLocationLatitude;
+@property (nonatomic) float eventLocationLongitude;
+
 @property (nonatomic, assign) MKCoordinateRegion boundingRegion;
 
 @end

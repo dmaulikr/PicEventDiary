@@ -17,4 +17,6 @@
 
 @property (nonatomic) CreateViewController *createViewController;
 
+@property (nonatomic) MKMapItem *location;
+
 @end

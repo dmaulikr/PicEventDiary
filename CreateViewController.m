@@ -17,6 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *eventEntered;
 @property (weak, nonatomic) IBOutlet UIDatePicker *dateEntered;
+
 @property (weak, nonatomic) IBOutlet UITextView *noteEntered;
 
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -60,7 +61,11 @@
     newManagedObject.eventName = self.eventEntered.text;
     newManagedObject.date = [[self.dateEntered date] timeIntervalSince1970];
  //   newManagedObject.
-    newManagedObject.note = self.locationName;
+ //   newManagedObject.location = self.locationName;
+    newManagedObject.locationName = self.locationName.name;
+    newManagedObject.locationLatitude = self.locationName.placemark.coordinate.latitude;
+    newManagedObject.locationLongitude = self.locationName.placemark.coordinate.longitude;
+//    newManagedObject.locationlongitude = self.locationName.placemark.coordinate.longitude
     
     NSError *error = nil;
     if (![context save:&error]) {
@@ -110,7 +115,7 @@
     
 //    Tag *oneTag = self.allTags[indexPath.row];
     
-    cell.eventLocationLabel.text = self.locationName;
+    cell.eventLocationLabel.text = self.locationName.name;
     
     return cell;
 }

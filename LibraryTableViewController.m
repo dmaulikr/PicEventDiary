@@ -87,7 +87,7 @@
     
     Event *oneEvent = [self.event objectAtIndex:indexPath.row];
     cell.eventNameLabel.text = oneEvent.eventName;
-    cell.locationLabel.text = oneEvent.note;
+    cell.locationLabel.text = oneEvent.locationName;
     NSDate *eventDate = [[NSDate alloc] initWithTimeIntervalSince1970:oneEvent.date];
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
     dateformatter.dateFormat = @"EEE MMM d, yyyy HH:mm a";

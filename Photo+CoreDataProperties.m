@@ -2,7 +2,7 @@
 //  Photo+CoreDataProperties.m
 //  PicDiary
 //
-//  Created by Narendra Thapa on 2016-02-09.
+//  Created by Narendra Thapa on 2016-02-11.
 //  Copyright © 2016 Narendra Thapa. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,9 +14,10 @@
 @implementation Photo (CoreDataProperties)
 
 @dynamic image;
-@dynamic likeCount;
 @dynamic imageName;
-@dynamic event;
+@dynamic likeCount;
 @dynamic commentPhoto;
+@dynamic event;
+@dynamic user;
 
 @end
