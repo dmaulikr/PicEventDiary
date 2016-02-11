@@ -64,7 +64,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Jaf-rP-sdB"/>
+                    <navigationItem key="navigationItem" id="Jaf-rP-sdB">
+                        <barButtonItem key="rightBarButtonItem" title="Sign Out Lib" id="p7Q-7w-hNG"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="CB7-Dx-IcG" id="uoM-DI-IX4"/>
                     </connections>
@@ -414,7 +416,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="jcZ-KR-fDQ"/>
+                    <navigationItem key="navigationItem" id="jcZ-KR-fDQ">
+                        <barButtonItem key="rightBarButtonItem" title="Sign Out Create" id="IGd-bn-Kai"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="dateEntered" destination="IVs-m5-0WF" id="SB4-g9-Vhg"/>
                         <outlet property="eventEntered" destination="42E-Jn-2q0" id="VbQ-be-OMd"/>
@@ -570,7 +574,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="g0D-I5-31q"/>
+                    <navigationItem key="navigationItem" id="g0D-I5-31q">
+                        <barButtonItem key="rightBarButtonItem" title="Sign Out Photos" id="klH-lE-EY4"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="ArN-8z-8AC" id="ia6-Fx-56q"/>
                         <outlet property="collectionViewFlowLayout" destination="6qI-oU-Hgx" id="gIf-8B-zGq"/>
