@@ -50,8 +50,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (IBAction)SaveButtonPressed:(UIBarButtonItem *)sender {
+- (IBAction)SaveButtonPressed:(UIButton *)sender {
     NSLog(@"Save Button Pressed");
     
     NSManagedObjectContext *context = self.managedObjectContext;
@@ -60,12 +59,12 @@
     
     newManagedObject.eventName = self.eventEntered.text;
     newManagedObject.date = [[self.dateEntered date] timeIntervalSince1970];
- //   newManagedObject.
- //   newManagedObject.location = self.locationName;
+    //   newManagedObject.
+    //   newManagedObject.location = self.locationName;
     newManagedObject.locationName = self.locationName.name;
     newManagedObject.locationLatitude = self.locationName.placemark.coordinate.latitude;
     newManagedObject.locationLongitude = self.locationName.placemark.coordinate.longitude;
-//    newManagedObject.locationlongitude = self.locationName.placemark.coordinate.longitude
+    //    newManagedObject.locationlongitude = self.locationName.placemark.coordinate.longitude
     
     NSError *error = nil;
     if (![context save:&error]) {
@@ -91,6 +90,10 @@
     
     self.eventEntered.text = @"";
     self.noteEntered.text = @"";
+}
+
+- (IBAction)kjSaveButtonPressed:(UIBarButtonItem *)sender {
+    // Bar button removed
 
 }
 

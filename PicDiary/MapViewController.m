@@ -48,34 +48,12 @@
         // We have only one annotation, select it's callout.
         [self.mapView selectAnnotation:[self.mapView.annotations objectAtIndex:0] animated:YES];
     }
-//    else {
-//        self.title = @"All Places";
-//        
-//        // Add all the found annotations to the map.
-//        
-//        for (MKMapItem *item in self.mapItemList) {
-//            PlaceAnnotation *annotation = [[PlaceAnnotation alloc] init];
-//            annotation.coordinate = item.placemark.location.coordinate;
-//            annotation.title = item.name;
-//            annotation.url = item.url;
-//            [self.mapView addAnnotation:annotation];
-//        }
-//    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self.mapView removeAnnotations:self.mapView.annotations];
 }
-
-//- (NSUInteger)supportedInterfaceOrientations {
-//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-//        return UIInterfaceOrientationMaskAll;
-//    } else {
-//        return UIInterfaceOrientationMaskAllButUpsideDown;
-//    }
-//}
-
 
 #pragma mark - MKMapViewDelegate
 
@@ -98,13 +76,14 @@
     }
     return annotationView;
 }
-- (IBAction)locationSelected:(UIBarButtonItem *)sender {
-    
+- (IBAction)locationSelected:(UIButton *)sender {
     self.createViewController.locationName = self.location;
     
     [self.navigationController popToViewController:(self.createViewController) animated:YES];
     
-    
+}
+- (IBAction)hmlocationSelected:(UIBarButtonItem *)sender {
+    // Bar button removed
 }
 
 @end

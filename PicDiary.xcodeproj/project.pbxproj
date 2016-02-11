@@ -61,6 +61,8 @@
 		483D84D41C6BF26500DD9F6E /* PlaceAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84D31C6BF26500DD9F6E /* PlaceAnnotation.m */; };
 		483D84D71C6BF2A100DD9F6E /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84D61C6BF2A100DD9F6E /* MapViewController.m */; };
 		483D84DA1C6C2CC200DD9F6E /* DetailMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84D91C6C2CC200DD9F6E /* DetailMapViewController.m */; };
+		483D84DD1C6CF04500DD9F6E /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84DC1C6CF04500DD9F6E /* SignUpViewController.m */; };
+		483D84E01C6CF06300DD9F6E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84DF1C6CF06300DD9F6E /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -152,6 +154,10 @@
 		483D84D61C6BF2A100DD9F6E /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		483D84D81C6C2CC200DD9F6E /* DetailMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailMapViewController.h; sourceTree = "<group>"; };
 		483D84D91C6C2CC200DD9F6E /* DetailMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailMapViewController.m; sourceTree = "<group>"; };
+		483D84DB1C6CF04500DD9F6E /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		483D84DC1C6CF04500DD9F6E /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		483D84DE1C6CF06300DD9F6E /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		483D84DF1C6CF06300DD9F6E /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +216,10 @@
 				483D84A21C6AE4F700DD9F6E /* PageViewController.m */,
 				483D847B1C694D4200DD9F6E /* TabBarController.h */,
 				483D847C1C694D4200DD9F6E /* TabBarController.m */,
+				483D84DE1C6CF06300DD9F6E /* LoginViewController.h */,
+				483D84DF1C6CF06300DD9F6E /* LoginViewController.m */,
+				483D84DB1C6CF04500DD9F6E /* SignUpViewController.h */,
+				483D84DC1C6CF04500DD9F6E /* SignUpViewController.m */,
 				483D84581C693A5B00DD9F6E /* CreateViewController.h */,
 				483D84591C693A5B00DD9F6E /* CreateViewController.m */,
 				483D84CC1C6BDE3200DD9F6E /* LocationTableViewCell.h */,
@@ -412,11 +422,13 @@
 				483D84571C693A2A00DD9F6E /* LibraryTableViewController.m in Sources */,
 				483D84831C696EA600DD9F6E /* EventDetailHeaderView.m in Sources */,
 				483D84CE1C6BDE3200DD9F6E /* LocationTableViewCell.m in Sources */,
+				483D84DD1C6CF04500DD9F6E /* SignUpViewController.m in Sources */,
 				483D83E01C69202400DD9F6E /* PicDiary.xcdatamodeld in Sources */,
 				483D83D41C69202400DD9F6E /* main.m in Sources */,
 				483D84DA1C6C2CC200DD9F6E /* DetailMapViewController.m in Sources */,
 				483D849A1C6AADAB00DD9F6E /* Comment.m in Sources */,
 				483D84891C697BD100DD9F6E /* EventAlbumViewController.m in Sources */,
+				483D84E01C6CF06300DD9F6E /* LoginViewController.m in Sources */,
 				483D84711C6949EB00DD9F6E /* Album+CoreDataProperties.m in Sources */,
 				483D84721C6949EB00DD9F6E /* Album.m in Sources */,
 				483D84941C6A88AB00DD9F6E /* FullScreenViewController.m in Sources */,
