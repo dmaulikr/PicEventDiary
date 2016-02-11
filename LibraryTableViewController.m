@@ -11,6 +11,7 @@
 #import "LibraryTableViewCell.h"
 #import "Event.h"
 #import "EventDetailViewController.h"
+#import "User.h"
 
 @interface LibraryTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -20,6 +21,11 @@
 
 @property (nonatomic) NSMutableArray *event;
 
+@property (nonatomic) NSMutableArray *loggedInUserEvent;
+
+@property (nonatomic) NSMutableArray *users;
+
+
 @end
 
 @implementation LibraryTableViewController
@@ -28,6 +34,8 @@
     [super viewDidLoad];
     
     self.event = [[NSMutableArray alloc] init];
+    self.users = [[NSMutableArray alloc] init];
+    self.loggedInUserEvent = [[NSMutableArray alloc] init];
     
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     
@@ -49,9 +57,29 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)UpdateArraysWithEvents {
+- (void)UpdateArraysWithEvents {
     
+    [self.loggedInUserEvent removeAllObjects];
     [self.event removeAllObjects];
+    [self.users removeAllObjects];
+    
+    NSManagedObjectContext *context = self.managedObjectContext;
+    
+    User *activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+    
+    NSError *errU = nil;
+    NSFetchRequest *fetchRequestU = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityU = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequestU setEntity:entityU];
+    
+    NSArray *users = [self.managedObjectContext executeFetchRequest:fetchRequestU error:&errU];
+    self.users = [users mutableCopy];
+    
+    for (User *user in self.users) {
+        if (user.signedIn) {
+            activeUser = user;
+        }
+    }
     
     NSError *errR = nil;
     NSFetchRequest *fetchRequestR = [[NSFetchRequest alloc] init];
@@ -61,10 +89,16 @@
     NSArray *events = [self.managedObjectContext executeFetchRequest:fetchRequestR error:&errR];
     self.event = [events mutableCopy];
     
+    for (Event *event in self.event) {
+        if ([event.user containsObject:activeUser]) {
+            [self.loggedInUserEvent addObject:event];
+        }
+    }
+    
     
 }
 
--(void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self UpdateArraysWithEvents];
     [self.tableView reloadData];
@@ -78,16 +112,16 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.event.count;
+    return self.loggedInUserEvent.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LibraryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LibraryCell" forIndexPath:indexPath];
     
-    Event *oneEvent = [self.event objectAtIndex:indexPath.row];
+    Event *oneEvent = [self.loggedInUserEvent objectAtIndex:indexPath.row];
     cell.eventNameLabel.text = oneEvent.eventName;
-    cell.locationLabel.text = @"Toronto";
+    cell.locationLabel.text = oneEvent.locationName;
     NSDate *eventDate = [[NSDate alloc] initWithTimeIntervalSince1970:oneEvent.date];
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
     dateformatter.dateFormat = @"EEE MMM d, yyyy HH:mm a";
@@ -107,7 +141,7 @@
         EventDetailViewController *eventDetailViewController = (EventDetailViewController *)[segue destinationViewController];
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        Event *eventSelected = [self.event objectAtIndex:indexPath.row];
+        Event *eventSelected = [self.loggedInUserEvent objectAtIndex:indexPath.row];
         NSLog(@"%@", eventSelected.eventName);
         
         eventDetailViewController.eventSelected = eventSelected;

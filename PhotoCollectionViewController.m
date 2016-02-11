@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "Photo.h"
 #import "FullScreenViewController.h"
+#import "PageViewController.h"
 
 @interface PhotoCollectionViewController ()
 
@@ -22,7 +23,7 @@
 
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
-@property (nonatomic) NSArray *photo;
+@property (nonatomic) NSMutableArray *photo;
 
 @end
 
@@ -45,12 +46,10 @@
     
     self.collectionView.collectionViewLayout = self.photoLayout;
     
-    NSError *errR = nil;
-    NSFetchRequest *fetchRequestR = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entityR = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequestR setEntity:entityR];
+    [self UpdateArraysWithPhotos];
     
-    self.photo = [self.managedObjectContext executeFetchRequest:fetchRequestR error:&errR];
+    [self.collectionView reloadData];
+    
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -61,10 +60,35 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)UpdateArraysWithPhotos {
+    
+    [self.photo removeAllObjects];
+    
+    NSError *errR = nil;
+    NSFetchRequest *fetchRequestR = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityR = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequestR setEntity:entityR];
+    
+    //self.photo = [self.managedObjectContext executeFetchRequest:fetchRequestR error:&errR];
+    
+    NSArray *photos = [self.managedObjectContext executeFetchRequest:fetchRequestR error:&errR];
+    self.photo = [photos mutableCopy];
+    
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self UpdateArraysWithPhotos];
+    [self.collectionView reloadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 /*
 #pragma mark - Navigation
@@ -97,6 +121,13 @@
 
 #pragma mark - Segues
 
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    if ([identifier isEqualToString:@"FullScreen"]) {
+        return NO;
+    }
+    return YES;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([[segue identifier] isEqualToString:@"FullScreen"]) {
@@ -107,12 +138,13 @@
         Photo *photoSelected = [self.photo objectAtIndex:indexPath.row];
         NSLog(@"Photo Selected");
         
+        
         FSViewController.selectedPhoto = photoSelected;
+        
         FSViewController.managedObjectContext = self.managedObjectContext;
     }
     
 }
-
 
 #pragma mark <UICollectionViewDelegate>
 
@@ -123,12 +155,21 @@
 }
 */
 
-/*
 // Uncomment this method to specify if the specified item should be selected
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    PageViewController *pages = [[PageViewController alloc] init];
+    
+    pages.photo = self.photo;
+    pages.itemIndex = indexPath.row;
+    pages.managedObjectContext = self.managedObjectContext;
+    NSLog(@"page View %lu", (unsigned long)pages.itemIndex);
+    
+    [self.navigationController pushViewController:pages animated:YES];
+    
     return YES;
 }
-*/
+
 
 /*
 // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item

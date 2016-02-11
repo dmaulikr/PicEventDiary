@@ -9,14 +9,23 @@
 #import "CreateViewController.h"
 #import "AppDelegate.h"
 #import "Event.h"
+#import "LocationTableViewCell.h"
+#import "MapSearchViewController.h"
 
-@interface CreateViewController ()
+@interface CreateViewController () <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (weak, nonatomic) IBOutlet UITextField *eventEntered;
 @property (weak, nonatomic) IBOutlet UIDatePicker *dateEntered;
+
 @property (weak, nonatomic) IBOutlet UITextView *noteEntered;
 
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
+
+@property (nonatomic) CreateViewController *initialInstance;
+
+@property (nonatomic) NSMutableArray *users;
+@property (nonatomic) NSMutableSet *userSet;
 
 @end
 
@@ -25,21 +34,50 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.users = [[NSMutableArray alloc] init];
+    
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     
     self.managedObjectContext = appDelegate.managedObjectContext;
+    
+    [self.users removeAllObjects];
+    
+    NSManagedObjectContext *context = self.managedObjectContext;
+    
+    User *activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+    
+    NSError *errU = nil;
+    NSFetchRequest *fetchRequestU = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityU = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequestU setEntity:entityU];
+    
+    NSArray *users = [self.managedObjectContext executeFetchRequest:fetchRequestU error:&errU];
+    self.users = [users mutableCopy];
+    
+    for (User *user in self.users) {
+        if (user.signedIn) {
+            activeUser = user;
+        }
+    }
+    
+    [self.userSet addObject:activeUser];
+    
+    self.initialInstance = self;
 
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-
-- (IBAction)saveButtonPressed:(UIButton *)sender {
+- (IBAction)SaveButtonPressed:(UIButton *)sender {
     NSLog(@"Save Button Pressed");
     
     NSManagedObjectContext *context = self.managedObjectContext;
@@ -48,7 +86,12 @@
     
     newManagedObject.eventName = self.eventEntered.text;
     newManagedObject.date = [[self.dateEntered date] timeIntervalSince1970];
-    newManagedObject.note = self.noteEntered.text;
+
+    newManagedObject.locationName = self.locationName.name;
+    newManagedObject.locationLatitude = self.locationName.placemark.coordinate.latitude;
+    newManagedObject.locationLongitude = self.locationName.placemark.coordinate.longitude;
+    
+    newManagedObject.user = self.userSet;
     
     NSError *error = nil;
     if (![context save:&error]) {
@@ -76,12 +119,56 @@
     self.noteEntered.text = @"";
 }
 
+- (IBAction)kjSaveButtonPressed:(UIBarButtonItem *)sender {
+    // Bar button removed
+
+}
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.eventEntered resignFirstResponder];
     [self.noteEntered resignFirstResponder];
 }
 
+#pragma mark - Table View
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    LocationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LocationCell" forIndexPath:indexPath];
+    
+//    Tag *oneTag = self.allTags[indexPath.row];
+    
+    cell.eventLocationLabel.text = self.locationName.name;
+    
+    return cell;
+}
+
+#pragma mark - Segues
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier] isEqualToString:@"SearchMap"]) {
+        
+        MapSearchViewController *eventDetailViewController = (MapSearchViewController *)[segue destinationViewController];
+//        
+//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        eventDetailViewController.createViewController = self.initialInstance;
+        
+//        Event *eventSelected = [self.event objectAtIndex:indexPath.row];
+//        NSLog(@"%@", eventSelected.eventName);
+//        
+//        eventDetailViewController.eventSelected = eventSelected;
+//        eventDetailViewController.managedObjectContext = self.managedObjectContext;
+    }
+    
+}
 
 /*
 #pragma mark - Navigation

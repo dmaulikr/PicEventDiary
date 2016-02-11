@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface CreateViewController : UIViewController
+@interface CreateViewController : UIViewController 
+
+@property (nonatomic) MKMapItem *locationName;
 
 @end

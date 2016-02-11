@@ -11,6 +11,7 @@
 #import "Photo.h"
 #import "Album.h"
 #import "FullScreenViewController.h"
+#import "PageViewController.h"
 
 @interface EventAlbumViewController ()
 
@@ -29,12 +30,43 @@
 
 @property (nonatomic) NSMutableArray *allPhotosInAlbum;
 
+@property (nonatomic) NSMutableArray *users;
+@property (nonatomic) NSMutableSet *userSet;
+
 @end
 
 @implementation EventAlbumViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    /***********************************/
+    self.users = [[NSMutableArray alloc] init];
+    
+    [self.users removeAllObjects];
+    
+    NSManagedObjectContext *context = self.managedObjectContext;
+    
+    User *activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+    
+    NSError *errU = nil;
+    NSFetchRequest *fetchRequestU = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityU = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequestU setEntity:entityU];
+    
+    NSArray *users = [self.managedObjectContext executeFetchRequest:fetchRequestU error:&errU];
+    self.users = [users mutableCopy];
+    
+    for (User *user in self.users) {
+        if (user.signedIn) {
+            activeUser = user;
+        }
+    }
+    
+    [self.userSet addObject:activeUser];
+    
+    /************************************/
+    
     self.photos = [[NSMutableArray alloc] init];
     self.allPhotosInAlbum = [[NSMutableArray alloc] init];
     
@@ -65,7 +97,6 @@
 
 - (void)UpdatePhotoArray {
     self.photos = [[self.eventSelected.photos allObjects] mutableCopy];
-    
 }
 
 #pragma mark <UICollectionViewDataSource>
@@ -122,6 +153,8 @@
     Photo *photoObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:context];
     photoObject.image = info[UIImagePickerControllerOriginalImage];
     
+    photoObject.user = self.userSet;
+    
     [self.eventPhotos addObject:photoObject];
     self.eventSelected.photos = self.eventPhotos;
     
@@ -143,6 +176,13 @@
 
 #pragma mark - Segues
 
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    if ([identifier isEqualToString:@"fullScreenFromAlbum"]) {
+        return NO;
+    }
+    return YES;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([[segue identifier] isEqualToString:@"fullScreenFromAlbum"]) {
@@ -151,6 +191,8 @@
         
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:sender];
         Photo *photoSelected = [self.photos objectAtIndex:indexPath.row];
+        
+        
         NSLog(@"Photo Selected");
         
         FSViewController.selectedPhoto = photoSelected;
@@ -159,6 +201,23 @@
     
 }
 
+
+
+
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    PageViewController *pages = [[PageViewController alloc] init];
+    
+    pages.photo = self.photos;
+    pages.itemIndex = indexPath.row;
+    pages.managedObjectContext = self.managedObjectContext;
+    NSLog(@"page View %lu", (unsigned long)pages.itemIndex);
+    
+    [self.navigationController pushViewController:pages animated:YES];
+    
+    return YES;
+}
 
 /*
 #pragma mark - Navigation

@@ -11,6 +11,7 @@
 #import "EventDetailHeaderView.h"
 #import "EventDetailCommentViewCell.h"
 #import "EventAlbumViewController.h"
+#import "DetailMapViewController.h"
 
 @interface EventDetailViewController ()
 
@@ -20,6 +21,9 @@
 
 @property (nonatomic) NSMutableOrderedSet *eventComments;
 @property (nonatomic) NSMutableArray *comments;
+
+@property (nonatomic) NSMutableArray *users;
+@property (nonatomic) NSMutableSet *userSet;
 
 @end
 
@@ -31,6 +35,37 @@
     self.comments = [[NSMutableArray alloc] init];
     
     self.eventComments = [self.eventSelected.commentEvent mutableCopy];
+    
+    /*********************************************/
+    self.users = [[NSMutableArray alloc] init];
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    
+    self.managedObjectContext = appDelegate.managedObjectContext;
+    
+    [self.users removeAllObjects];
+    
+    NSManagedObjectContext *context = self.managedObjectContext;
+    
+    User *activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+    
+    NSError *errU = nil;
+    NSFetchRequest *fetchRequestU = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityU = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequestU setEntity:entityU];
+    
+    NSArray *users = [self.managedObjectContext executeFetchRequest:fetchRequestU error:&errU];
+    self.users = [users mutableCopy];
+    
+    for (User *user in self.users) {
+        if (user.signedIn) {
+            activeUser = user;
+        }
+    }
+    
+    [self.userSet addObject:activeUser];
+    
+    /*********************************************/
     
     // Do any additional setup after loading the view.
 }
@@ -83,7 +118,7 @@
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
     dateformatter.dateFormat = @"EEE MMM d, yyyy HH:mm a";
     header.eventDateHeaderLabel.text = [dateformatter stringFromDate:eventDate];
-    header.eventLocationHeaderLabel.text = @"Toronto";
+    header.eventLocationHeaderLabel.titleLabel.text = self.eventSelected.locationName;
     
     return header;
 }
@@ -103,11 +138,19 @@
         eventAlbumViewController.eventSelected = self.eventSelected;
         eventAlbumViewController.managedObjectContext = self.managedObjectContext;
     }
+    else if ([[segue identifier] isEqualToString:@"locationDetail"]) {
+        
+        DetailMapViewController *detailMapViewController = (DetailMapViewController *)[segue destinationViewController];
+        detailMapViewController.eventLocationName = self.eventSelected.locationName;
+        detailMapViewController.eventLocationLatitude = self.eventSelected.locationLatitude;
+        detailMapViewController.eventLocationLongitude = self.eventSelected.locationLongitude;
+        
+    }
     
 }
 
 - (IBAction)commentButtonPressed:(UIButton *)sender {
-    UIAlertController *alert= [UIAlertController alertControllerWithTitle:@"Enter Folder Name"
+    UIAlertController *alert= [UIAlertController alertControllerWithTitle:@"Comment Window"
                                                                   message:@"Keep it short and sweet"
                                                            preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
@@ -121,6 +164,7 @@
                                                    NSLog(@"text was %@", textField.text);
                                                    
                                                    commentObject.comment = textField.text;
+                                                   commentObject.user = self.userSet;
                                                    [self.eventComments addObject:commentObject];
                                                    self.eventSelected.commentEvent = self.eventComments;
                                                    NSError *error = nil;

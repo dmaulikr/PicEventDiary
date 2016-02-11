@@ -14,6 +14,10 @@
 
 //@property (weak, nonatomic) IBOutlet UIImageView *fullScreenImage;
 
+@property (nonatomic) NSUInteger itemIndex;
+
+@property (nonatomic) NSArray *photo;
+
 @property (nonatomic) Photo *selectedPhoto;
 
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
