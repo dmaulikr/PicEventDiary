@@ -22,6 +22,9 @@
 @property (nonatomic) NSMutableOrderedSet *eventComments;
 @property (nonatomic) NSMutableArray *comments;
 
+@property (nonatomic) NSMutableArray *users;
+@property (nonatomic) NSMutableSet *userSet;
+
 @end
 
 @implementation EventDetailViewController
@@ -32,6 +35,37 @@
     self.comments = [[NSMutableArray alloc] init];
     
     self.eventComments = [self.eventSelected.commentEvent mutableCopy];
+    
+    /*********************************************/
+    self.users = [[NSMutableArray alloc] init];
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    
+    self.managedObjectContext = appDelegate.managedObjectContext;
+    
+    [self.users removeAllObjects];
+    
+    NSManagedObjectContext *context = self.managedObjectContext;
+    
+    User *activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+    
+    NSError *errU = nil;
+    NSFetchRequest *fetchRequestU = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityU = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequestU setEntity:entityU];
+    
+    NSArray *users = [self.managedObjectContext executeFetchRequest:fetchRequestU error:&errU];
+    self.users = [users mutableCopy];
+    
+    for (User *user in self.users) {
+        if (user.signedIn) {
+            activeUser = user;
+        }
+    }
+    
+    [self.userSet addObject:activeUser];
+    
+    /*********************************************/
     
     // Do any additional setup after loading the view.
 }
@@ -130,6 +164,7 @@
                                                    NSLog(@"text was %@", textField.text);
                                                    
                                                    commentObject.comment = textField.text;
+                                                   commentObject.user = self.userSet;
                                                    [self.eventComments addObject:commentObject];
                                                    self.eventSelected.commentEvent = self.eventComments;
                                                    NSError *error = nil;

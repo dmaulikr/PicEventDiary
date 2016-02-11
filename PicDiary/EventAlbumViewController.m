@@ -30,12 +30,42 @@
 
 @property (nonatomic) NSMutableArray *allPhotosInAlbum;
 
+@property (nonatomic) NSMutableArray *users;
+@property (nonatomic) NSMutableSet *userSet;
+
 @end
 
 @implementation EventAlbumViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    /***********************************/
+    self.users = [[NSMutableArray alloc] init];
+    
+    [self.users removeAllObjects];
+    
+    NSManagedObjectContext *context = self.managedObjectContext;
+    
+    User *activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+    
+    NSError *errU = nil;
+    NSFetchRequest *fetchRequestU = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityU = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequestU setEntity:entityU];
+    
+    NSArray *users = [self.managedObjectContext executeFetchRequest:fetchRequestU error:&errU];
+    self.users = [users mutableCopy];
+    
+    for (User *user in self.users) {
+        if (user.signedIn) {
+            activeUser = user;
+        }
+    }
+    
+    [self.userSet addObject:activeUser];
+    
+    /************************************/
     
     self.photos = [[NSMutableArray alloc] init];
     self.allPhotosInAlbum = [[NSMutableArray alloc] init];
@@ -123,6 +153,8 @@
     Photo *photoObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:context];
     photoObject.image = info[UIImagePickerControllerOriginalImage];
     
+    photoObject.user = self.userSet;
+    
     [self.eventPhotos addObject:photoObject];
     self.eventSelected.photos = self.eventPhotos;
     
@@ -159,6 +191,8 @@
         
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:sender];
         Photo *photoSelected = [self.photos objectAtIndex:indexPath.row];
+        
+        
         NSLog(@"Photo Selected");
         
         FSViewController.selectedPhoto = photoSelected;

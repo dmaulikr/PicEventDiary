@@ -18,12 +18,42 @@
 @property (nonatomic) NSMutableOrderedSet *photoComments;
 @property (nonatomic) NSMutableArray *comments;
 
+@property (nonatomic) NSMutableArray *users;
+@property (nonatomic) NSMutableSet *userSet;
+
 @end
 
 @implementation FullScreenViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    /*******************************************/
+    self.users = [[NSMutableArray alloc] init];
+    
+    [self.users removeAllObjects];
+    
+    NSManagedObjectContext *context = self.managedObjectContext;
+    
+    User *activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+    
+    NSError *errU = nil;
+    NSFetchRequest *fetchRequestU = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityU = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequestU setEntity:entityU];
+    
+    NSArray *users = [self.managedObjectContext executeFetchRequest:fetchRequestU error:&errU];
+    self.users = [users mutableCopy];
+    
+    for (User *user in self.users) {
+        if (user.signedIn) {
+            activeUser = user;
+        }
+    }
+    
+    [self.userSet addObject:activeUser];
+    /*********************************************/
     
     self.selectedPhoto = [self.photo objectAtIndex:self.itemIndex];
     
@@ -65,8 +95,14 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     PhotoCommentViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"photoCommentCell" forIndexPath:indexPath];
-    cell.authorLabel.text = @"Narendra";
+    
+    
+   
     Comment *cellComment = [self.comments objectAtIndex:indexPath.row];
+    
+    User *commentAuthor = [cellComment.user anyObject];
+
+    cell.authorLabel.text = commentAuthor.username;
     cell.commentLabel.text = cellComment.comment;
 //    cell.commentLabel.text = @"Comments here";
     
@@ -99,8 +135,11 @@
                                                    NSLog(@"text was %@", textField.text);
                                                    
                                                    commentObject.comment = textField.text;
+                                                   commentObject.user = self.userSet;
+                                                   
                                                    [self.photoComments addObject:commentObject];
                                                    self.selectedPhoto.commentPhoto = self.photoComments;
+                                                   
                                                    NSError *error = nil;
                                                    if (![context save:&error]) {
                                                        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
