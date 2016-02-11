@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *eventNameHeaderLabel;
 @property (weak, nonatomic) IBOutlet UILabel *eventDateHeaderLabel;
-@property (weak, nonatomic) IBOutlet UILabel *eventLocationHeaderLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *eventLocationHeaderLabel;
+@property (weak, nonatomic) IBOutlet UIButton *eventLocationHeaderLabel;
 
 @end

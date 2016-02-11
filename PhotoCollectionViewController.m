@@ -121,24 +121,6 @@
 
 #pragma mark - Segues
 
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    
-//    if ([[segue identifier] isEqualToString:@"FullScreen"]) {
-//        
-//        FullScreenViewController *FSViewController = (FullScreenViewController *)[segue destinationViewController];
-//        
-//        NSIndexPath *indexPath = [self.collectionView indexPathForCell:sender];
-//        Photo *photoSelected = [self.photo objectAtIndex:indexPath.row];
-//        NSLog(@"Photo Selected");
-//        
-//        
-//        
-//        FSViewController.selectedPhoto = photoSelected;
-//        FSViewController.managedObjectContext = self.managedObjectContext;
-//    }
-//    
-//}
-
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     if ([identifier isEqualToString:@"FullScreen"]) {
         return NO;
@@ -181,7 +163,7 @@
     pages.photo = self.photo;
     pages.itemIndex = indexPath.row;
     pages.managedObjectContext = self.managedObjectContext;
-    NSLog(@"page View %d", pages.itemIndex);
+    NSLog(@"page View %lu", (unsigned long)pages.itemIndex);
     
     [self.navigationController pushViewController:pages animated:YES];
     

@@ -83,7 +83,7 @@
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
     dateformatter.dateFormat = @"EEE MMM d, yyyy HH:mm a";
     header.eventDateHeaderLabel.text = [dateformatter stringFromDate:eventDate];
-    header.eventLocationHeaderLabel.text = @"Toronto";
+    header.eventLocationHeaderLabel.text = self.eventSelected.note;
     
     return header;
 }

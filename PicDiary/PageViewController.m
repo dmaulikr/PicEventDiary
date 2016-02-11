@@ -111,7 +111,7 @@
         pageItemController.photo = self.photo;
         pageItemController.itemIndex = itemIndex;
         pageItemController.managedObjectContext = self.managedObjectContext;
-        NSLog(@"itemIndex: %d", itemIndex);
+        NSLog(@"itemIndex: %lu", (unsigned long)itemIndex);
         
         return pageItemController;
     }

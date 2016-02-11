@@ -9,14 +9,19 @@
 #import "CreateViewController.h"
 #import "AppDelegate.h"
 #import "Event.h"
+#import "LocationTableViewCell.h"
+#import "MapSearchViewController.h"
 
-@interface CreateViewController ()
+@interface CreateViewController () <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (weak, nonatomic) IBOutlet UITextField *eventEntered;
 @property (weak, nonatomic) IBOutlet UIDatePicker *dateEntered;
 @property (weak, nonatomic) IBOutlet UITextView *noteEntered;
 
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
+
+@property (nonatomic) CreateViewController *initialInstance;
 
 @end
 
@@ -28,8 +33,16 @@
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     
     self.managedObjectContext = appDelegate.managedObjectContext;
+    
+    self.initialInstance = self;
 
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,9 +50,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
-- (IBAction)saveButtonPressed:(UIButton *)sender {
+- (IBAction)SaveButtonPressed:(UIBarButtonItem *)sender {
     NSLog(@"Save Button Pressed");
     
     NSManagedObjectContext *context = self.managedObjectContext;
@@ -48,7 +59,8 @@
     
     newManagedObject.eventName = self.eventEntered.text;
     newManagedObject.date = [[self.dateEntered date] timeIntervalSince1970];
-    newManagedObject.note = self.noteEntered.text;
+ //   newManagedObject.
+    newManagedObject.note = self.locationName;
     
     NSError *error = nil;
     if (![context save:&error]) {
@@ -74,14 +86,54 @@
     
     self.eventEntered.text = @"";
     self.noteEntered.text = @"";
-}
 
+}
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.eventEntered resignFirstResponder];
     [self.noteEntered resignFirstResponder];
 }
 
+#pragma mark - Table View
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    LocationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LocationCell" forIndexPath:indexPath];
+    
+//    Tag *oneTag = self.allTags[indexPath.row];
+    
+    cell.eventLocationLabel.text = self.locationName;
+    
+    return cell;
+}
+
+#pragma mark - Segues
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier] isEqualToString:@"SearchMap"]) {
+        
+        MapSearchViewController *eventDetailViewController = (MapSearchViewController *)[segue destinationViewController];
+//        
+//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        eventDetailViewController.createViewController = self.initialInstance;
+        
+//        Event *eventSelected = [self.event objectAtIndex:indexPath.row];
+//        NSLog(@"%@", eventSelected.eventName);
+//        
+//        eventDetailViewController.eventSelected = eventSelected;
+//        eventDetailViewController.managedObjectContext = self.managedObjectContext;
+    }
+    
+}
 
 /*
 #pragma mark - Navigation

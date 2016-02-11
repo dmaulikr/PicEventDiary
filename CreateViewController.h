@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CreateViewController : UIViewController
+@interface CreateViewController : UIViewController 
+
+@property (nonatomic) NSString *locationName;
 
 @end

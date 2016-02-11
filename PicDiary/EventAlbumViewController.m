@@ -11,6 +11,7 @@
 #import "Photo.h"
 #import "Album.h"
 #import "FullScreenViewController.h"
+#import "PageViewController.h"
 
 @interface EventAlbumViewController ()
 
@@ -35,6 +36,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.photos = [[NSMutableArray alloc] init];
     self.allPhotosInAlbum = [[NSMutableArray alloc] init];
     
@@ -142,6 +144,13 @@
 
 #pragma mark - Segues
 
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    if ([identifier isEqualToString:@"fullScreenFromAlbum"]) {
+        return NO;
+    }
+    return YES;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([[segue identifier] isEqualToString:@"fullScreenFromAlbum"]) {
@@ -158,6 +167,23 @@
     
 }
 
+
+
+
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    PageViewController *pages = [[PageViewController alloc] init];
+    
+    pages.photo = self.photos;
+    pages.itemIndex = indexPath.row;
+    pages.managedObjectContext = self.managedObjectContext;
+    NSLog(@"page View %lu", (unsigned long)pages.itemIndex);
+    
+    [self.navigationController pushViewController:pages animated:YES];
+    
+    return YES;
+}
 
 /*
 #pragma mark - Navigation
