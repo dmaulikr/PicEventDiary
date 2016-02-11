@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
+
+@class SignUpViewController;
+
+@protocol SignUpViewControllerDelegate <NSObject>
+
+- (void)didSignedUp;
+
+@end
 
 @interface SignUpViewController : UIViewController
+
+@property (nonatomic, weak) id <SignUpViewControllerDelegate> delegate;
 
 @end

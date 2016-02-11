@@ -10,11 +10,14 @@
 #import <Parse/Parse.h>
 #import "LoginViewController.h"
 #import "TabBarController.h"
+#import "SignUpViewController.h"
+#import "User.h"
 
 @interface AppDelegate () <LoginViewControllerDelegate>
 
-@property (nonatomic, strong) LoginViewController *lvc;
 @property (nonatomic, strong) TabBarController *tc;
+@property (nonatomic, strong) LoginViewController *lvc;
+@property (nonatomic, strong) SignUpViewController *svc;
 
 @end
 
@@ -53,10 +56,17 @@
 #pragma mark - Preparation 
 
 - (void)prepareControllers {
+    
+    self.tc = (TabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"TabBarController"];
+    
+    self.svc = (SignUpViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignUpViewController"];
+    self.svc.delegate = self;
+    
     self.lvc = (LoginViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
     self.lvc.delegate = self;
     
-    self.tc = (TabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"TabBarController"];
+
+
 }
 
 #pragma mark - Delegation for Login View Controller
@@ -64,6 +74,17 @@
 - (void)didPressLogin {
     self.window.rootViewController = self.tc;
 }
+
+- (void)didPressSignUp {
+    self.window.rootViewController = self.svc;
+}
+
+#pragma mark - Delegation for SignUp View Controller
+- (void)didSignedUp {
+    
+    self.window.rootViewController = self.tc;
+}
+
 
 #pragma mark - Core Data stack
 

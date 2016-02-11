@@ -34,8 +34,14 @@
 
 - (IBAction)didPressLogin:(id)sender {
     
-    
     [self.delegate didPressLogin];
+}
+
+
+- (IBAction)didPressSignUp:(UIButton *)sender {
+    
+    [self.delegate didPressSignUp];
+    
 }
 
 @end

@@ -29,6 +29,7 @@
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="signedIn" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="commentuser" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comment" inverseName="user" inverseEntity="Comment" syncable="YES"/>
         <relationship name="eventuser" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="user" inverseEntity="Event" syncable="YES"/>
@@ -38,6 +39,6 @@
         <element name="Comment" positionX="36" positionY="144" width="128" height="120"/>
         <element name="Event" positionX="-45" positionY="0" width="128" height="180"/>
         <element name="Photo" positionX="9" positionY="90" width="128" height="135"/>
-        <element name="User" positionX="-18" positionY="54" width="128" height="135"/>
+        <element name="User" positionX="-18" positionY="54" width="128" height="150"/>
     </elements>
 </model>

@@ -16,6 +16,7 @@
 @dynamic email;
 @dynamic password;
 @dynamic username;
+@dynamic signedIn;
 @dynamic eventuser;
 @dynamic photouser;
 @dynamic commentuser;

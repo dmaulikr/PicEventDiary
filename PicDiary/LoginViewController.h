@@ -13,6 +13,7 @@
 @protocol LoginViewControllerDelegate <NSObject>
 
 - (void)didPressLogin;
+- (void)didPressSignUp;
 
 @end
 

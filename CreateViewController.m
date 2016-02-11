@@ -24,6 +24,9 @@
 
 @property (nonatomic) CreateViewController *initialInstance;
 
+@property (nonatomic) NSMutableArray *users;
+@property (nonatomic) NSMutableSet *userSet;
+
 @end
 
 @implementation CreateViewController
@@ -31,9 +34,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.users = [[NSMutableArray alloc] init];
+    
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     
     self.managedObjectContext = appDelegate.managedObjectContext;
+    
+    [self.users removeAllObjects];
+    
+    NSManagedObjectContext *context = self.managedObjectContext;
+    
+    User *activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+    
+    NSError *errU = nil;
+    NSFetchRequest *fetchRequestU = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityU = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequestU setEntity:entityU];
+    
+    NSArray *users = [self.managedObjectContext executeFetchRequest:fetchRequestU error:&errU];
+    self.users = [users mutableCopy];
+    
+    for (User *user in self.users) {
+        if (user.signedIn) {
+            activeUser = user;
+        }
+    }
+    
+    [self.userSet addObject:activeUser];
     
     self.initialInstance = self;
 
@@ -59,12 +86,12 @@
     
     newManagedObject.eventName = self.eventEntered.text;
     newManagedObject.date = [[self.dateEntered date] timeIntervalSince1970];
-    //   newManagedObject.
-    //   newManagedObject.location = self.locationName;
+
     newManagedObject.locationName = self.locationName.name;
     newManagedObject.locationLatitude = self.locationName.placemark.coordinate.latitude;
     newManagedObject.locationLongitude = self.locationName.placemark.coordinate.longitude;
-    //    newManagedObject.locationlongitude = self.locationName.placemark.coordinate.longitude
+    
+    newManagedObject.user = self.userSet;
     
     NSError *error = nil;
     if (![context save:&error]) {

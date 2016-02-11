@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *email;
 @property (nullable, nonatomic, retain) NSString *password;
 @property (nullable, nonatomic, retain) NSString *username;
+@property (nonatomic) BOOL signedIn;
 @property (nullable, nonatomic, retain) NSSet<Event *> *eventuser;
 @property (nullable, nonatomic, retain) NSSet<Photo *> *photouser;
 @property (nullable, nonatomic, retain) NSSet<Comment *> *commentuser;
