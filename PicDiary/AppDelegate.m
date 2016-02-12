@@ -11,13 +11,15 @@
 #import "LoginViewController.h"
 #import "TabBarController.h"
 #import "SignUpViewController.h"
+#import "LibraryTableViewController.h"
 #import "User.h"
 
-@interface AppDelegate () <LoginViewControllerDelegate>
+@interface AppDelegate () <LoginViewControllerDelegate,SignUpViewControllerDelegate,LibraryTableViewControllerDelegate>
 
 @property (nonatomic, strong) TabBarController *tc;
 @property (nonatomic, strong) LoginViewController *lvc;
 @property (nonatomic, strong) SignUpViewController *svc;
+@property (nonatomic, strong) LibraryTableViewController *libvc;
 
 @end
 
@@ -65,6 +67,8 @@
     self.lvc = (LoginViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
     self.lvc.delegate = self;
     
+    self.libvc = (LibraryTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LibraryTableViewController"];
+    self.libvc.delegate = self;
 
 
 }
@@ -87,6 +91,13 @@
     self.window.rootViewController = self.tc;
 }
 
+#pragma mark - Delegation for Library Table View Controller
+
+- (void)didPressLogOut {
+    
+    self.window.rootViewController = self.lvc;
+    
+}
 
 #pragma mark - Core Data stack
 

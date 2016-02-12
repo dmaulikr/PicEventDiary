@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class LibraryTableViewController;
+
+@protocol LibraryTableViewControllerDelegate <NSObject>
+
+- (void)didPressLogOut;
+
+@end
+
 @interface LibraryTableViewController : UIViewController
+
+@property (nonatomic, weak) id <LibraryTableViewControllerDelegate> delegate;
 
 @end

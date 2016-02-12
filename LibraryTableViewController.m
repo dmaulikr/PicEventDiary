@@ -138,7 +138,14 @@
     return cell;
 }
 
-- (IBAction)signedOut:(UIBarButtonItem *)sender {
+- (IBAction)oksignedOut:(UIBarButtonItem *)sender {
+    
+    
+    
+}
+
+
+- (IBAction)signedOut:(id)sender {
     
     self.activeUser.signedIn = NO;
     NSError *error = nil;
@@ -147,9 +154,10 @@
         abort();
     }
     NSLog(@"Logged Out");
-    
-    
+    [self.delegate didPressLogOut];
+
 }
+
 
 #pragma mark - Segues
 

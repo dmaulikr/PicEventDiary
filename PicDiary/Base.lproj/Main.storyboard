@@ -8,7 +8,7 @@
         <!--Library-->
         <scene sceneID="p3z-8e-Jlt">
             <objects>
-                <viewController title="Library" id="CO0-m5-vAE" customClass="LibraryTableViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LibraryTableViewController" title="Library" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CO0-m5-vAE" customClass="LibraryTableViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZuA-4A-bY0"/>
                         <viewControllerLayoutGuide type="bottom" id="SZd-5n-LkR"/>
@@ -67,7 +67,7 @@
                     <navigationItem key="navigationItem" id="Jaf-rP-sdB">
                         <barButtonItem key="rightBarButtonItem" title="Log Out" id="p7Q-7w-hNG">
                             <connections>
-                                <action selector="signedOut:" destination="CO0-m5-vAE" id="OsE-Kv-qyl"/>
+                                <action selector="signedOut:" destination="CO0-m5-vAE" id="Xch-qL-uI8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -788,7 +788,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aBv-kE-3f4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-56" y="539"/>
+            <point key="canvasLocation" x="44" y="1277"/>
         </scene>
         <!--SignUp-->
         <scene sceneID="4F5-gK-Jwr">
@@ -836,7 +836,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q3O-oB-0Pf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="539"/>
+            <point key="canvasLocation" x="500" y="1277"/>
         </scene>
         <!--Library-->
         <scene sceneID="4Fx-dr-8bV">
@@ -929,7 +929,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="134-Ax-YXn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-532" y="539"/>
+            <point key="canvasLocation" x="-432" y="1277"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
