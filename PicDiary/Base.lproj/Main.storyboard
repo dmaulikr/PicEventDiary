@@ -184,6 +184,18 @@
                                                 <segue destination="9zC-mq-9ou" kind="push" identifier="locationDetail" id="j0E-hR-rOX"/>
                                             </connections>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Invited" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADq-go-tHm">
+                                            <rect key="frame" x="8" y="168" width="304" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Invited People" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yb7-VO-drr">
+                                            <rect key="frame" x="8" y="197" width="304" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Event Wall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3G7-eg-E4P">
                                             <rect key="frame" x="0.0" y="238" width="140" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -193,6 +205,7 @@
                                     </subviews>
                                     <connections>
                                         <outlet property="eventDateHeaderLabel" destination="tGR-bH-ySL" id="26k-oV-Hrj"/>
+                                        <outlet property="eventInvitedPeopleLabel" destination="Yb7-VO-drr" id="sJB-or-EuT"/>
                                         <outlet property="eventLocationHeaderLabel" destination="KM6-8m-ngH" id="lSO-tq-uO4"/>
                                         <outlet property="eventNameHeaderLabel" destination="0D9-rM-sUo" id="zji-SD-zG0"/>
                                     </connections>
@@ -671,11 +684,18 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vb3-pb-Bil">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="276"/>
+                                            <rect key="frame" x="0.0" y="22" width="320" height="254"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VfW-hu-8tf">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <connections>
                                         <outlet property="imageView" destination="vb3-pb-Bil" id="pdc-34-Ul0"/>
+                                        <outlet property="uploaderName" destination="VfW-hu-8tf" id="JG1-G8-QoD"/>
                                     </connections>
                                 </collectionReusableView>
                                 <connections>

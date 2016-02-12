@@ -127,6 +127,18 @@
     header.eventDateHeaderLabel.text = [dateformatter stringFromDate:eventDate];
     header.eventLocationHeaderLabel.titleLabel.text = self.eventSelected.locationName;
     
+    NSArray *names = [[self.eventSelected.user allObjects] mutableCopy];
+    
+    NSString *namesInvitee = [[NSString alloc] init];
+    for (User *user in names) {
+        namesInvitee = [namesInvitee stringByAppendingString:[NSString stringWithFormat:@"%@ ", user.username]];
+    }
+    
+    NSLog(@"Names Invited %@", namesInvitee);
+    
+    header.eventInvitedPeopleLabel.text = namesInvitee;
+    
+    
     return header;
 }
 

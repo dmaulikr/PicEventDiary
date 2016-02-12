@@ -11,5 +11,6 @@
 @interface PhotoFullScreenImageHeader : UICollectionReusableView
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *uploaderName;
 
 @end

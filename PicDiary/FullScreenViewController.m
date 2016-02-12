@@ -115,6 +115,15 @@
     header.imageView.contentMode = UIViewContentModeScaleAspectFit;
     header.imageView.image = self.selectedPhoto.image;
     
+    NSArray *names = [[self.selectedPhoto.user allObjects] mutableCopy];
+    NSString *uploadedby = [[NSString alloc] init];
+    for (User *user in names) {
+        uploadedby = [uploadedby stringByAppendingString:[NSString stringWithFormat:@"%@ ", user.username]];
+    }
+    
+    NSLog(@"Names Invited %@", uploadedby);
+    header.uploaderName.text = uploadedby;
+    
     return header;
 }
 
