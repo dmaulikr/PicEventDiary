@@ -10,11 +10,13 @@
 #import "AppDelegate.h"
 #import "Event.h"
 #import "LocationTableViewCell.h"
+#import "InviteeSelectViewCell.h"
 #import "MapSearchViewController.h"
 #import "User.h"
 
 @interface CreateViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *inviteeTableView;
 
 @property (weak, nonatomic) IBOutlet UITextField *eventEntered;
 @property (weak, nonatomic) IBOutlet UIDatePicker *dateEntered;
@@ -25,12 +27,13 @@
 
 @property (nonatomic) CreateViewController *initialInstance;
 
+@property (nonatomic) NSMutableArray *inactiveUsers;
 @property (nonatomic) NSMutableArray *users;
 @property (nonatomic) NSMutableSet *userSet;
 
 @property (nonatomic) User *activeUser;
 
-
+@property (nonatomic) NSMutableArray *inactiveUsersList;
 
 @end
 
@@ -40,6 +43,8 @@
     [super viewDidLoad];
     
     self.users = [[NSMutableArray alloc] init];
+    self.inactiveUsers = [[NSMutableArray alloc] init];
+    self.inactiveUsersList = [[NSMutableArray alloc] init];
     self.userSet = [[NSMutableSet alloc] init];
     
     [self.users removeAllObjects];
@@ -66,8 +71,21 @@
         if (user.signedIn) {
             NSLog(@"CVC Active UserName: %@", user.username);
             self.activeUser = user;
+        } else {
+            [self.inactiveUsers addObject:user];
         }
     }
+    NSLog(@"InactiveUsers %d", self.inactiveUsers.count);
+    
+    for (User *user in self.inactiveUsers) {
+        if (user.username) {
+            [self.inactiveUsersList addObject:user];
+        }
+    }
+    
+    NSLog(@"InactiveUsersList %d", self.inactiveUsersList.count);
+    
+    
     NSLog(@"Number of users: %lu", (unsigned long)self.users.count);
     
     [self.userSet addObject:self.activeUser];
@@ -144,19 +162,56 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    
+    if (tableView == self.tableView) {
+        return 1;
+    }
+        return self.inactiveUsersList.count;
+    
+}
+
+- (User *)returnNonActiveUser:(NSUInteger)index {
+    
+    return [self.inactiveUsersList objectAtIndex:index];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    if (tableView == self.inviteeTableView) {
+    
+    InviteeSelectViewCell *inviteeCell = [tableView dequeueReusableCellWithIdentifier:@"InviteeCell" forIndexPath:indexPath];
+    User *user = [self returnNonActiveUser:indexPath.row];
+    inviteeCell.inviteeName.text = user.username;
+    
+    return inviteeCell;
+    }
+
     LocationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LocationCell" forIndexPath:indexPath];
-    
-//    Tag *oneTag = self.allTags[indexPath.row];
-    
     cell.eventLocationLabel.text = self.locationName.name;
     
     return cell;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (tableView == self.inviteeTableView) {
+    
+    InviteeSelectViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    User *oneUser = self.inactiveUsersList[indexPath.row];
+    
+    cell.accessoryType = cell.accessoryType == UITableViewCellAccessoryCheckmark ? UITableViewCellAccessoryNone:UITableViewCellAccessoryCheckmark;
+    
+    if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+        [self.userSet addObject:oneUser];
+        NSLog(@"Added %@", oneUser.username);
+    } else {
+        [self.userSet removeObject:oneUser];
+        NSLog(@"Removed %@", oneUser.username);
+    }
+    }
+}
+
 
 - (IBAction)signedOut:(UIBarButtonItem *)sender {
     

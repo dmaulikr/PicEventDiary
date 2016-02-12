@@ -415,15 +415,30 @@
                                 <rect key="frame" x="20" y="407" width="280" height="104"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jDy-Og-kri">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InviteeCell" id="jDy-Og-kri" customClass="InviteeSelectViewCell">
                                         <rect key="frame" x="0.0" y="28" width="280" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jDy-Og-kri" id="BvU-WK-5kA">
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Invitee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KlP-T0-58F">
+                                                    <rect key="frame" x="0.0" y="14" width="280" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="inviteeName" destination="KlP-T0-58F" id="ogO-Vx-Zv6"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BBZ-Ja-Rqe" id="oIY-tf-csh"/>
+                                    <outlet property="delegate" destination="BBZ-Ja-Rqe" id="LtP-Fv-F4J"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -438,6 +453,7 @@
                     <connections>
                         <outlet property="dateEntered" destination="IVs-m5-0WF" id="SB4-g9-Vhg"/>
                         <outlet property="eventEntered" destination="42E-Jn-2q0" id="VbQ-be-OMd"/>
+                        <outlet property="inviteeTableView" destination="vJs-wZ-Q2Q" id="vuC-P0-zNf"/>
                         <outlet property="tableView" destination="aH2-Kt-iQs" id="GR7-ZM-XlA"/>
                     </connections>
                 </viewController>

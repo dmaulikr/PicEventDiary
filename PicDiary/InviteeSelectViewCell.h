@@ -10,4 +10,6 @@
 
 @interface InviteeSelectViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *inviteeName;
+
 @end

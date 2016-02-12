@@ -121,6 +121,7 @@
     for (Event *event in self.event) {
         if ([event.user containsObject:self.activeUser]) {
             [self.loggedInUserEvent addObject:event];
+            
         }
     }
     
