@@ -64,6 +64,8 @@
 		483D84DD1C6CF04500DD9F6E /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84DC1C6CF04500DD9F6E /* SignUpViewController.m */; };
 		483D84E01C6CF06300DD9F6E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84DF1C6CF06300DD9F6E /* LoginViewController.m */; };
 		483D84E31C6D7F3000DD9F6E /* InviteeSelectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84E21C6D7F3000DD9F6E /* InviteeSelectViewCell.m */; };
+		483D84E71C6E576400DD9F6E /* vintage-collage-paris-travel-37829239.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 483D84E61C6E576400DD9F6E /* vintage-collage-paris-travel-37829239.jpg */; };
+		483D84EA1C6E59D400DD9F6E /* Light-Wood-Background-Wallpaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 483D84E91C6E59D400DD9F6E /* Light-Wood-Background-Wallpaper.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -161,6 +163,8 @@
 		483D84DF1C6CF06300DD9F6E /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		483D84E11C6D7F3000DD9F6E /* InviteeSelectViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteeSelectViewCell.h; sourceTree = "<group>"; };
 		483D84E21C6D7F3000DD9F6E /* InviteeSelectViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteeSelectViewCell.m; sourceTree = "<group>"; };
+		483D84E61C6E576400DD9F6E /* vintage-collage-paris-travel-37829239.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "vintage-collage-paris-travel-37829239.jpg"; path = "../../Downloads/vintage-collage-paris-travel-37829239.jpg"; sourceTree = "<group>"; };
+		483D84E91C6E59D400DD9F6E /* Light-Wood-Background-Wallpaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Light-Wood-Background-Wallpaper.jpg"; path = "../../Downloads/Light-Wood-Background-Wallpaper.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +197,7 @@
 		483D83C61C69202400DD9F6E = {
 			isa = PBXGroup;
 			children = (
+				483D84E81C6E577400DD9F6E /* Images */,
 				483D847A1C694A1100DD9F6E /* CoreData */,
 				483D842E1C69253B00DD9F6E /* Frameworks */,
 				483D83D11C69202400DD9F6E /* PicDiary */,
@@ -330,6 +335,15 @@
 			name = CoreData;
 			sourceTree = "<group>";
 		};
+		483D84E81C6E577400DD9F6E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				483D84E91C6E59D400DD9F6E /* Light-Wood-Background-Wallpaper.jpg */,
+				483D84E61C6E576400DD9F6E /* vintage-collage-paris-travel-37829239.jpg */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -387,7 +401,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				483D84EA1C6E59D400DD9F6E /* Light-Wood-Background-Wallpaper.jpg in Resources */,
 				483D83E51C69202400DD9F6E /* LaunchScreen.storyboard in Resources */,
+				483D84E71C6E576400DD9F6E /* vintage-collage-paris-travel-37829239.jpg in Resources */,
 				483D83E21C69202400DD9F6E /* Assets.xcassets in Resources */,
 				483D848B1C697E2300DD9F6E /* Sunset.JPG in Resources */,
 				483D83DD1C69202400DD9F6E /* Main.storyboard in Resources */,
