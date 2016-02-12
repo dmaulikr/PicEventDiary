@@ -30,9 +30,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.found = NO;
     
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
     
     self.users = [[NSMutableArray alloc] init];
@@ -81,6 +82,8 @@
         NSLog(@"Account does not exist");
     } else {
         NSLog(@"Account found");
+        self.usernameLogin.text = @"";
+        self.passwordLogin.text = @"";
         [self.delegate didPressLogin];
     }
 }

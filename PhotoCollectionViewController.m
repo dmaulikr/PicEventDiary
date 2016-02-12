@@ -45,7 +45,7 @@
     [super viewDidLoad];
     
     
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
     
     self.event = [[NSMutableArray alloc] init];

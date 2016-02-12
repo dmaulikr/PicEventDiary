@@ -14,7 +14,7 @@
 #import "LibraryTableViewController.h"
 #import "User.h"
 
-@interface AppDelegate () <LoginViewControllerDelegate,SignUpViewControllerDelegate,LibraryTableViewControllerDelegate>
+@interface AppDelegate () <LoginViewControllerDelegate,SignUpViewControllerDelegate>
 
 @property (nonatomic, strong) TabBarController *tc;
 @property (nonatomic, strong) LoginViewController *lvc;

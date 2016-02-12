@@ -39,7 +39,9 @@
     self.users = [[NSMutableArray alloc] init];
     self.loggedInUserEvent = [[NSMutableArray alloc] init];
     
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    self.delegate = appDelegate;
     
     self.managedObjectContext = appDelegate.managedObjectContext;
     
@@ -73,18 +75,18 @@
     [fetchRequestU setEntity:entityU];
     
     NSArray *users = [self.managedObjectContext executeFetchRequest:fetchRequestU error:&errU];
-    NSLog(@"users array: %lu", (unsigned long)users.count);
+    //NSLog(@"users array: %lu", (unsigned long)users.count);
     self.users = [users mutableCopy];
     
     for (User *user in self.users) {
-        NSLog(@"UserName: %@", user.username);
+        //NSLog(@"UserName: %@", user.username);
         if (user.signedIn) {
             NSLog(@"Active UserName: %@", user.username);
             self.activeUser = user;
         }
     }
     
-    NSLog(@"Number of users: %lu", (unsigned long)self.users.count);
+    //NSLog(@"Number of users: %lu", (unsigned long)self.users.count);
         
     NSError *errR = nil;
     NSFetchRequest *fetchRequestR = [[NSFetchRequest alloc] init];

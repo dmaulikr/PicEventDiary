@@ -43,7 +43,7 @@
     self.users = [[NSMutableArray alloc] init];
     self.userSet = [[NSMutableSet alloc] init];
     
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     self.managedObjectContext = appDelegate.managedObjectContext;
     

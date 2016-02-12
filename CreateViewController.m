@@ -47,12 +47,33 @@
     self.inactiveUsersList = [[NSMutableArray alloc] init];
     self.userSet = [[NSMutableSet alloc] init];
     
-    [self.users removeAllObjects];
-    [self.userSet removeAllObjects];
-    
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     self.managedObjectContext = appDelegate.managedObjectContext;
+    
+    [self updateUserArray];
+    [self.tableView reloadData];
+    [self.inviteeTableView reloadData];
+    
+    self.initialInstance = self;
+
+
+    // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self updateUserArray];
+    [self.tableView reloadData];
+    [self.inviteeTableView reloadData];
+    
+}
+
+- (void)updateUserArray {
+    [self.users removeAllObjects];
+    [self.userSet removeAllObjects];
+    [self.inactiveUsers removeAllObjects];
+    [self.inactiveUsersList removeAllObjects];
     
     self.activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.managedObjectContext];
     
@@ -65,7 +86,6 @@
     NSLog(@"users array: %lu", (unsigned long)users.count);
     self.users = [users mutableCopy];
     
-
     for (User *user in self.users) {
         NSLog(@"CVC UserName: %@", user.username);
         if (user.signedIn) {
@@ -83,21 +103,10 @@
         }
     }
     
-    NSLog(@"InactiveUsersList %d", self.inactiveUsersList.count);
-    
-    
-    NSLog(@"Number of users: %lu", (unsigned long)self.users.count);
+    //NSLog(@"InactiveUsersList %d", self.inactiveUsersList.count);
+    //NSLog(@"Number of users: %lu", (unsigned long)self.users.count);
     
     [self.userSet addObject:self.activeUser];
-    
-    self.initialInstance = self;
-
-    // Do any additional setup after loading the view.
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.tableView reloadData];
     
 }
 
