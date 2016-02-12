@@ -65,7 +65,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Jaf-rP-sdB">
-                        <barButtonItem key="rightBarButtonItem" title="Sign Out Lib" id="p7Q-7w-hNG">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="p7Q-7w-hNG">
                             <connections>
                                 <action selector="signedOut:" destination="CO0-m5-vAE" id="OsE-Kv-qyl"/>
                             </connections>
@@ -444,7 +444,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="jcZ-KR-fDQ">
-                        <barButtonItem key="rightBarButtonItem" title="Sign Out Create" id="IGd-bn-Kai">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="IGd-bn-Kai">
                             <connections>
                                 <action selector="signedOut:" destination="BBZ-Ja-Rqe" id="HN1-6b-8Fb"/>
                             </connections>
@@ -607,7 +607,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="g0D-I5-31q">
-                        <barButtonItem key="rightBarButtonItem" title="Sign Out Photos" id="klH-lE-EY4"/>
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="klH-lE-EY4"/>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="ArN-8z-8AC" id="ia6-Fx-56q"/>
@@ -933,6 +933,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4uy-WZ-mAC"/>
+        <segue reference="xaf-co-CKU"/>
     </inferredMetricsTieBreakers>
 </document>
