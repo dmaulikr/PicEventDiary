@@ -72,10 +72,12 @@
 #pragma mark - Delegation for Login View Controller
 
 - (void)didPressLogin {
+    
     self.window.rootViewController = self.tc;
 }
 
 - (void)didPressSignUp {
+    
     self.window.rootViewController = self.svc;
 }
 

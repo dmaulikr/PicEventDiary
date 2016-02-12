@@ -9,6 +9,7 @@
 #import "FullScreenViewController.h"
 #import "PhotoCommentViewCell.h"
 #import "PhotoFullScreenImageHeader.h"
+#import "User.h"
 
 @interface FullScreenViewController ()
 
@@ -21,6 +22,8 @@
 @property (nonatomic) NSMutableArray *users;
 @property (nonatomic) NSMutableSet *userSet;
 
+@property (nonatomic) User *activeUser;
+
 @end
 
 @implementation FullScreenViewController
@@ -31,12 +34,12 @@
     
     /*******************************************/
     self.users = [[NSMutableArray alloc] init];
+    self.userSet = [[NSMutableSet alloc] init];
     
     [self.users removeAllObjects];
+    [self.userSet removeAllObjects];
     
-    NSManagedObjectContext *context = self.managedObjectContext;
-    
-    User *activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+    self.activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.managedObjectContext];
     
     NSError *errU = nil;
     NSFetchRequest *fetchRequestU = [[NSFetchRequest alloc] init];
@@ -48,11 +51,11 @@
     
     for (User *user in self.users) {
         if (user.signedIn) {
-            activeUser = user;
+            self.activeUser = user;
         }
     }
     
-    [self.userSet addObject:activeUser];
+    [self.userSet addObject:self.activeUser];
     /*********************************************/
     
     self.selectedPhoto = [self.photo objectAtIndex:self.itemIndex];
@@ -95,16 +98,12 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     PhotoCommentViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"photoCommentCell" forIndexPath:indexPath];
-    
-    
    
     Comment *cellComment = [self.comments objectAtIndex:indexPath.row];
-    
     User *commentAuthor = [cellComment.user anyObject];
 
     cell.authorLabel.text = commentAuthor.username;
     cell.commentLabel.text = cellComment.comment;
-//    cell.commentLabel.text = @"Comments here";
     
     return cell;
 }
@@ -115,7 +114,6 @@
     header.imageView.backgroundColor = [UIColor blackColor];
     header.imageView.contentMode = UIViewContentModeScaleAspectFit;
     header.imageView.image = self.selectedPhoto.image;
-//    header.imageView.image = [UIImage imageNamed:@"Sunset.JPG"];
     
     return header;
 }

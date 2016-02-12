@@ -25,6 +25,8 @@
 
 @property (nonatomic) NSMutableArray *users;
 
+@property (nonatomic) User *activeUser;
+
 
 @end
 
@@ -41,9 +43,11 @@
     
     self.managedObjectContext = appDelegate.managedObjectContext;
     
+    self.activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+    
     [self UpdateArraysWithEvents];
     
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -63,24 +67,25 @@
     [self.event removeAllObjects];
     [self.users removeAllObjects];
     
-    NSManagedObjectContext *context = self.managedObjectContext;
-    
-    User *activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
-    
     NSError *errU = nil;
     NSFetchRequest *fetchRequestU = [[NSFetchRequest alloc] init];
     NSEntityDescription *entityU = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
     [fetchRequestU setEntity:entityU];
     
     NSArray *users = [self.managedObjectContext executeFetchRequest:fetchRequestU error:&errU];
+    NSLog(@"users array: %lu", (unsigned long)users.count);
     self.users = [users mutableCopy];
     
     for (User *user in self.users) {
+        NSLog(@"UserName: %@", user.username);
         if (user.signedIn) {
-            activeUser = user;
+            NSLog(@"Active UserName: %@", user.username);
+            self.activeUser = user;
         }
     }
     
+    NSLog(@"Number of users: %lu", (unsigned long)self.users.count);
+        
     NSError *errR = nil;
     NSFetchRequest *fetchRequestR = [[NSFetchRequest alloc] init];
     NSEntityDescription *entityR = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
@@ -90,10 +95,11 @@
     self.event = [events mutableCopy];
     
     for (Event *event in self.event) {
-        if ([event.user containsObject:activeUser]) {
+        if ([event.user containsObject:self.activeUser]) {
             [self.loggedInUserEvent addObject:event];
         }
     }
+    
     
     
 }
@@ -130,6 +136,19 @@
     // Configure the cell...
     
     return cell;
+}
+
+- (IBAction)signedOut:(UIBarButtonItem *)sender {
+    
+    self.activeUser.signedIn = NO;
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    NSLog(@"Logged Out");
+    
+    
 }
 
 #pragma mark - Segues

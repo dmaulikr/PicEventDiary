@@ -11,6 +11,7 @@
 #import "Event.h"
 #import "LocationTableViewCell.h"
 #import "MapSearchViewController.h"
+#import "User.h"
 
 @interface CreateViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -27,6 +28,10 @@
 @property (nonatomic) NSMutableArray *users;
 @property (nonatomic) NSMutableSet *userSet;
 
+@property (nonatomic) User *activeUser;
+
+
+
 @end
 
 @implementation CreateViewController
@@ -35,16 +40,16 @@
     [super viewDidLoad];
     
     self.users = [[NSMutableArray alloc] init];
+    self.userSet = [[NSMutableSet alloc] init];
+    
+    [self.users removeAllObjects];
+    [self.userSet removeAllObjects];
     
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     
     self.managedObjectContext = appDelegate.managedObjectContext;
     
-    [self.users removeAllObjects];
-    
-    NSManagedObjectContext *context = self.managedObjectContext;
-    
-    User *activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+    self.activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.managedObjectContext];
     
     NSError *errU = nil;
     NSFetchRequest *fetchRequestU = [[NSFetchRequest alloc] init];
@@ -52,15 +57,20 @@
     [fetchRequestU setEntity:entityU];
     
     NSArray *users = [self.managedObjectContext executeFetchRequest:fetchRequestU error:&errU];
+    NSLog(@"users array: %lu", (unsigned long)users.count);
     self.users = [users mutableCopy];
     
+
     for (User *user in self.users) {
+        NSLog(@"CVC UserName: %@", user.username);
         if (user.signedIn) {
-            activeUser = user;
+            NSLog(@"CVC Active UserName: %@", user.username);
+            self.activeUser = user;
         }
     }
+    NSLog(@"Number of users: %lu", (unsigned long)self.users.count);
     
-    [self.userSet addObject:activeUser];
+    [self.userSet addObject:self.activeUser];
     
     self.initialInstance = self;
 
@@ -80,9 +90,7 @@
 - (IBAction)SaveButtonPressed:(UIButton *)sender {
     NSLog(@"Save Button Pressed");
     
-    NSManagedObjectContext *context = self.managedObjectContext;
-    
-    Event *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Event" inManagedObjectContext:context];
+    Event *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
     
     newManagedObject.eventName = self.eventEntered.text;
     newManagedObject.date = [[self.dateEntered date] timeIntervalSince1970];
@@ -94,7 +102,7 @@
     newManagedObject.user = self.userSet;
     
     NSError *error = nil;
-    if (![context save:&error]) {
+    if (![self.managedObjectContext save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
@@ -150,6 +158,18 @@
     return cell;
 }
 
+- (IBAction)signedOut:(UIBarButtonItem *)sender {
+    
+    self.activeUser.signedIn = NO;
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    NSLog(@"Logged Out");
+    
+    
+}
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

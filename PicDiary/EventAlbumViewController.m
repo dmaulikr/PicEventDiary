@@ -42,12 +42,12 @@
     
     /***********************************/
     self.users = [[NSMutableArray alloc] init];
+    self.userSet = [[NSMutableSet alloc] init];
     
     [self.users removeAllObjects];
+    [self.userSet removeAllObjects];
     
-    NSManagedObjectContext *context = self.managedObjectContext;
-    
-    User *activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+    User *activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.managedObjectContext];
     
     NSError *errU = nil;
     NSFetchRequest *fetchRequestU = [[NSFetchRequest alloc] init];
@@ -146,25 +146,20 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     NSLog(@"Image Choosen");
-    
-    
-    NSManagedObjectContext *context = self.managedObjectContext;
 
-    Photo *photoObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:context];
+    Photo *photoObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
     photoObject.image = info[UIImagePickerControllerOriginalImage];
-    
     photoObject.user = self.userSet;
     
     [self.eventPhotos addObject:photoObject];
     self.eventSelected.photos = self.eventPhotos;
     
     NSError *error = nil;
-    if (![context save:&error]) {
+    if (![self.managedObjectContext save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    
     
 }
 
@@ -192,7 +187,6 @@
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:sender];
         Photo *photoSelected = [self.photos objectAtIndex:indexPath.row];
         
-        
         NSLog(@"Photo Selected");
         
         FSViewController.selectedPhoto = photoSelected;
@@ -202,9 +196,6 @@
 }
 
 
-
-
-
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     PageViewController *pages = [[PageViewController alloc] init];
@@ -212,7 +203,7 @@
     pages.photo = self.photos;
     pages.itemIndex = indexPath.row;
     pages.managedObjectContext = self.managedObjectContext;
-    NSLog(@"page View %lu", (unsigned long)pages.itemIndex);
+    NSLog(@"Page View %lu", (unsigned long)pages.itemIndex);
     
     [self.navigationController pushViewController:pages animated:YES];
     

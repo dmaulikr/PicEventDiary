@@ -12,6 +12,7 @@
 #import "Photo.h"
 #import "FullScreenViewController.h"
 #import "PageViewController.h"
+#import "User.h"
 
 @interface PhotoCollectionViewController ()
 
@@ -23,7 +24,16 @@
 
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
+@property (nonatomic) NSMutableArray *photoArraySet;
 @property (nonatomic) NSMutableArray *photo;
+
+@property (nonatomic) NSMutableArray *users;
+@property (nonatomic) NSMutableSet *userSet;
+
+@property (nonatomic) NSMutableArray *event;
+@property (nonatomic) NSMutableArray *loggedInUserEvent;
+
+@property (nonatomic) User *activeUser;
 
 @end
 
@@ -34,9 +44,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
+    
+    self.event = [[NSMutableArray alloc] init];
+    self.loggedInUserEvent = [[NSMutableArray alloc] init];
+    self.photoArraySet = [[NSMutableArray alloc] init];
+    
+    /*********************************************/
+    self.users = [[NSMutableArray alloc] init];
+    self.userSet = [[NSMutableSet alloc] init];
+    [self.users removeAllObjects];
+    [self.userSet removeAllObjects];
+    
+    NSManagedObjectContext *context = self.managedObjectContext;
+    
+    self.activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+    
+    NSError *errU = nil;
+    NSFetchRequest *fetchRequestU = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityU = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequestU setEntity:entityU];
+    
+    NSArray *users = [self.managedObjectContext executeFetchRequest:fetchRequestU error:&errU];
+    self.users = [users mutableCopy];
+    
+    for (User *user in self.users) {
+        if (user.signedIn) {
+            self.activeUser = user;
+        }
+    }
+    
+    [self.userSet addObject:self.activeUser];
+    
+    /*********************************************/
     
     self.photoLayout = [[UICollectionViewFlowLayout alloc] init];
     self.photoLayout.itemSize = CGSizeMake(105, 150);
@@ -62,17 +104,46 @@
 
 - (void)UpdateArraysWithPhotos {
     
-    [self.photo removeAllObjects];
+    [self.loggedInUserEvent removeAllObjects];
+    [self.event removeAllObjects];
+    //[self.users removeAllObjects];
+    
+    NSLog(@"Number of users: %lu", (unsigned long)self.users.count);
     
     NSError *errR = nil;
     NSFetchRequest *fetchRequestR = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entityR = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entityR = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
     [fetchRequestR setEntity:entityR];
     
-    //self.photo = [self.managedObjectContext executeFetchRequest:fetchRequestR error:&errR];
+    NSArray *events = [self.managedObjectContext executeFetchRequest:fetchRequestR error:&errR];
+    self.event = [events mutableCopy];
     
-    NSArray *photos = [self.managedObjectContext executeFetchRequest:fetchRequestR error:&errR];
-    self.photo = [photos mutableCopy];
+    for (Event *event in self.event) {
+        if ([event.user containsObject:self.activeUser]) {
+            [self.loggedInUserEvent addObject:event];
+        }
+    }
+    
+    [self.photoArraySet removeAllObjects];
+    
+//    NSError *errP = nil;
+//    NSFetchRequest *fetchRequestP = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *entityP = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
+//    [fetchRequestP setEntity:entityP];
+//
+//    
+//    NSArray *photos = [self.managedObjectContext executeFetchRequest:fetchRequestP error:&errP];
+//    self.photo = [photos mutableCopy];
+    
+    for (Event *event in self.loggedInUserEvent) {
+        [self.photo addObject:[event.photos allObjects]];
+       // [self.photoArraySet addObject:event.photos];
+    }
+    
+//    for (NSSet *photoSet in self.photoArraySet) {
+//        [self.photo addObject:[oneTag.receipts allObjects]];
+//        self.photo = [photoSet allObjects];
+//    }
     
     
 }

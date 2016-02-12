@@ -63,6 +63,7 @@
 		483D84DA1C6C2CC200DD9F6E /* DetailMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84D91C6C2CC200DD9F6E /* DetailMapViewController.m */; };
 		483D84DD1C6CF04500DD9F6E /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84DC1C6CF04500DD9F6E /* SignUpViewController.m */; };
 		483D84E01C6CF06300DD9F6E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84DF1C6CF06300DD9F6E /* LoginViewController.m */; };
+		483D84E31C6D7F3000DD9F6E /* InviteeSelectViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D84E21C6D7F3000DD9F6E /* InviteeSelectViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -158,6 +159,8 @@
 		483D84DC1C6CF04500DD9F6E /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		483D84DE1C6CF06300DD9F6E /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		483D84DF1C6CF06300DD9F6E /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		483D84E11C6D7F3000DD9F6E /* InviteeSelectViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteeSelectViewCell.h; sourceTree = "<group>"; };
+		483D84E21C6D7F3000DD9F6E /* InviteeSelectViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteeSelectViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +225,8 @@
 				483D84DC1C6CF04500DD9F6E /* SignUpViewController.m */,
 				483D84581C693A5B00DD9F6E /* CreateViewController.h */,
 				483D84591C693A5B00DD9F6E /* CreateViewController.m */,
+				483D84E11C6D7F3000DD9F6E /* InviteeSelectViewCell.h */,
+				483D84E21C6D7F3000DD9F6E /* InviteeSelectViewCell.m */,
 				483D84CC1C6BDE3200DD9F6E /* LocationTableViewCell.h */,
 				483D84CD1C6BDE3200DD9F6E /* LocationTableViewCell.m */,
 				483D84CF1C6BE18000DD9F6E /* MapSearchViewController.h */,
@@ -404,6 +409,7 @@
 				483D847D1C694D4200DD9F6E /* TabBarController.m in Sources */,
 				483D84731C6949EB00DD9F6E /* Event+CoreDataProperties.m in Sources */,
 				483D84741C6949EB00DD9F6E /* Event.m in Sources */,
+				483D84E31C6D7F3000DD9F6E /* InviteeSelectViewCell.m in Sources */,
 				483D84761C6949EB00DD9F6E /* User.m in Sources */,
 				483D84861C6970C600DD9F6E /* EventDetailCommentViewCell.m in Sources */,
 				483D845D1C69424700DD9F6E /* LibraryTableViewCell.m in Sources */,

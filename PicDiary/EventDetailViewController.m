@@ -12,6 +12,7 @@
 #import "EventDetailCommentViewCell.h"
 #import "EventAlbumViewController.h"
 #import "DetailMapViewController.h"
+#import "User.h"
 
 @interface EventDetailViewController ()
 
@@ -24,6 +25,8 @@
 
 @property (nonatomic) NSMutableArray *users;
 @property (nonatomic) NSMutableSet *userSet;
+
+@property (nonatomic) User *activeUser;
 
 @end
 
@@ -38,16 +41,18 @@
     
     /*********************************************/
     self.users = [[NSMutableArray alloc] init];
+    self.userSet = [[NSMutableSet alloc] init];
     
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     
     self.managedObjectContext = appDelegate.managedObjectContext;
     
     [self.users removeAllObjects];
+    [self.userSet removeAllObjects];
     
     NSManagedObjectContext *context = self.managedObjectContext;
     
-    User *activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+    self.activeUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
     
     NSError *errU = nil;
     NSFetchRequest *fetchRequestU = [[NSFetchRequest alloc] init];
@@ -59,11 +64,11 @@
     
     for (User *user in self.users) {
         if (user.signedIn) {
-            activeUser = user;
+            self.activeUser = user;
         }
     }
     
-    [self.userSet addObject:activeUser];
+    [self.userSet addObject:self.activeUser];
     
     /*********************************************/
     
@@ -100,10 +105,12 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     EventDetailCommentViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CommentCell" forIndexPath:indexPath];
-    cell.commentAuthorLabel.text = @"Narendra";
+
     Comment *cellComment = [self.comments objectAtIndex:indexPath.row];
+    User *commentAuthor = [cellComment.user anyObject];
+    
+    cell.commentAuthorLabel.text = commentAuthor.username;
     cell.commentLabel.text = cellComment.comment;
-    //cell.commentLabel.text = @"Comments are supposed to come here.\n Keep going";
     
     return cell;
 }
@@ -131,9 +138,6 @@
         
         EventAlbumViewController *eventAlbumViewController = (EventAlbumViewController *)[segue destinationViewController];
         NSLog(@"toEventPhotos");
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        Event *eventSelected = [self.event objectAtIndex:indexPath.row];
-//        NSLog(@"%@", eventSelected.eventName);
         
         eventAlbumViewController.eventSelected = self.eventSelected;
         eventAlbumViewController.managedObjectContext = self.managedObjectContext;
@@ -165,8 +169,10 @@
                                                    
                                                    commentObject.comment = textField.text;
                                                    commentObject.user = self.userSet;
+                                                   
                                                    [self.eventComments addObject:commentObject];
                                                    self.eventSelected.commentEvent = self.eventComments;
+                                                   
                                                    NSError *error = nil;
                                                    if (![context save:&error]) {
                                                        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);

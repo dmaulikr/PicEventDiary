@@ -65,7 +65,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Jaf-rP-sdB">
-                        <barButtonItem key="rightBarButtonItem" title="Sign Out Lib" id="p7Q-7w-hNG"/>
+                        <barButtonItem key="rightBarButtonItem" title="Sign Out Lib" id="p7Q-7w-hNG">
+                            <connections>
+                                <action selector="signedOut:" destination="CO0-m5-vAE" id="OsE-Kv-qyl"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="CB7-Dx-IcG" id="uoM-DI-IX4"/>
@@ -369,12 +373,6 @@
                                     <!--2016-02-08 20:38:08 +0000-->
                                 </date>
                             </datePicker>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Invitees" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uw6-ju-K4z">
-                                <rect key="frame" x="20" y="407" width="280" height="94"/>
-                                <color key="backgroundColor" red="0.94847112889999996" green="0.97381883859999996" blue="0.90728658439999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aH2-Kt-iQs">
                                 <rect key="frame" x="20" y="337" width="280" height="62"/>
                                 <color key="backgroundColor" red="0.97248035669326782" green="0.97739392518997192" blue="0.92734414339065552" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -413,11 +411,29 @@
                                     <action selector="SaveButtonPressed:" destination="BBZ-Ja-Rqe" eventType="touchUpInside" id="8tX-a5-M9B"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vJs-wZ-Q2Q">
+                                <rect key="frame" x="20" y="407" width="280" height="104"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jDy-Og-kri">
+                                        <rect key="frame" x="0.0" y="28" width="280" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jDy-Og-kri" id="BvU-WK-5kA">
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="jcZ-KR-fDQ">
-                        <barButtonItem key="rightBarButtonItem" title="Sign Out Create" id="IGd-bn-Kai"/>
+                        <barButtonItem key="rightBarButtonItem" title="Sign Out Create" id="IGd-bn-Kai">
+                            <connections>
+                                <action selector="signedOut:" destination="BBZ-Ja-Rqe" id="HN1-6b-8Fb"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="dateEntered" destination="IVs-m5-0WF" id="SB4-g9-Vhg"/>
