@@ -24,8 +24,8 @@
 
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
-@property (nonatomic) NSMutableArray *photoArraySet;
 @property (nonatomic) NSMutableArray *photo;
+@property (nonatomic) NSMutableArray *tempPhoto;
 
 @property (nonatomic) NSMutableArray *users;
 @property (nonatomic) NSMutableSet *userSet;
@@ -49,8 +49,9 @@
     self.managedObjectContext = appDelegate.managedObjectContext;
     
     self.event = [[NSMutableArray alloc] init];
+    self.photo = [[NSMutableArray alloc] init];
+    self.tempPhoto = [[NSMutableArray alloc] init];
     self.loggedInUserEvent = [[NSMutableArray alloc] init];
-    self.photoArraySet = [[NSMutableArray alloc] init];
     
     /*********************************************/
     self.users = [[NSMutableArray alloc] init];
@@ -106,7 +107,7 @@
     
     [self.loggedInUserEvent removeAllObjects];
     [self.event removeAllObjects];
-    //[self.users removeAllObjects];
+    [self.photo removeAllObjects];
     
     NSLog(@"Number of users: %lu", (unsigned long)self.users.count);
     
@@ -118,34 +119,19 @@
     NSArray *events = [self.managedObjectContext executeFetchRequest:fetchRequestR error:&errR];
     self.event = [events mutableCopy];
     
+    NSLog(@"Event Count %d", self.event.count);
+    
     for (Event *event in self.event) {
         if ([event.user containsObject:self.activeUser]) {
             [self.loggedInUserEvent addObject:event];
-            
         }
     }
-    
-    [self.photoArraySet removeAllObjects];
-    
-//    NSError *errP = nil;
-//    NSFetchRequest *fetchRequestP = [[NSFetchRequest alloc] init];
-//    NSEntityDescription *entityP = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:self.managedObjectContext];
-//    [fetchRequestP setEntity:entityP];
-//
-//    
-//    NSArray *photos = [self.managedObjectContext executeFetchRequest:fetchRequestP error:&errP];
-//    self.photo = [photos mutableCopy];
+    NSLog(@"Logged In User Event %d", self.loggedInUserEvent.count);
     
     for (Event *event in self.loggedInUserEvent) {
-        [self.photo addObject:[event.photos allObjects]];
-       // [self.photoArraySet addObject:event.photos];
+        self.tempPhoto = [[event.photos allObjects] mutableCopy];
+        [self.photo addObjectsFromArray:self.tempPhoto];
     }
-    
-//    for (NSSet *photoSet in self.photoArraySet) {
-//        [self.photo addObject:[oneTag.receipts allObjects]];
-//        self.photo = [photoSet allObjects];
-//    }
-    
     
 }
 
