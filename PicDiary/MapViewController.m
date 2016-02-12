@@ -76,14 +76,15 @@
     }
     return annotationView;
 }
-- (IBAction)locationSelected:(UIButton *)sender {
+- (IBAction)hmlocationSelected:(UIButton *)sender {
+    
+    
+}
+- (IBAction)locationSelected:(UIBarButtonItem *)sender {
+    // Bar button removed
     self.createViewController.locationName = self.location;
     
     [self.navigationController popToViewController:(self.createViewController) animated:YES];
-    
-}
-- (IBAction)hmlocationSelected:(UIBarButtonItem *)sender {
-    // Bar button removed
 }
 
 @end

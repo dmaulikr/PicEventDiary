@@ -48,7 +48,6 @@
     self.userSet = [[NSMutableSet alloc] init];
     
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    
     self.managedObjectContext = appDelegate.managedObjectContext;
     
     [self updateUserArray];
@@ -114,14 +113,19 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)SaveButtonPressed:(UIButton *)sender {
+- (IBAction)koSaveButtonPressed:(UIButton *)sender {
+    
+}
+
+- (IBAction)SaveButtonPressed:(UIBarButtonItem *)sender {
+    // Bar button removed
     NSLog(@"Save Button Pressed");
     
     Event *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
     
     newManagedObject.eventName = self.eventEntered.text;
     newManagedObject.date = [[self.dateEntered date] timeIntervalSince1970];
-
+    
     newManagedObject.locationName = self.locationName.name;
     newManagedObject.locationLatitude = self.locationName.placemark.coordinate.latitude;
     newManagedObject.locationLongitude = self.locationName.placemark.coordinate.longitude;
@@ -152,10 +156,6 @@
     
     self.eventEntered.text = @"";
     self.noteEntered.text = @"";
-}
-
-- (IBAction)kjSaveButtonPressed:(UIBarButtonItem *)sender {
-    // Bar button removed
 
 }
 
@@ -192,12 +192,17 @@
     User *user = [self returnNonActiveUser:indexPath.row];
     inviteeCell.inviteeName.text = user.username;
     
+    inviteeCell.accessoryType = UITableViewCellAccessoryNone;
+    
     return inviteeCell;
     }
 
     LocationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LocationCell" forIndexPath:indexPath];
+    if ([self.eventEntered.text isEqual: @""]) {
+    cell.eventLocationLabel.text = @"";
+    } else {
     cell.eventLocationLabel.text = self.locationName.name;
-    
+    }
     return cell;
 }
 
@@ -219,6 +224,7 @@
         NSLog(@"Removed %@", oneUser.username);
     }
     }
+    
 }
 
 

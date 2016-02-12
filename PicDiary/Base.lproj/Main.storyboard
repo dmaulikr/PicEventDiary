@@ -96,13 +96,13 @@
                                 <color key="backgroundColor" red="0.89999955892562866" green="0.97351986169815063" blue="0.93648499250411987" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AEf-Pa-9kx">
                                     <size key="itemSize" width="319" height="117"/>
-                                    <size key="headerReferenceSize" width="50" height="198"/>
+                                    <size key="headerReferenceSize" width="50" height="259"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CommentCell" id="a89-9y-R01" customClass="EventDetailCommentViewCell">
-                                        <rect key="frame" x="0.5" y="262" width="319" height="117"/>
+                                        <rect key="frame" x="0.5" y="323" width="319" height="117"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="319" height="117"/>
@@ -131,7 +131,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EventHeader" id="usp-kc-fVd" customClass="EventDetailHeaderView">
-                                    <rect key="frame" x="0.0" y="64" width="320" height="198"/>
+                                    <rect key="frame" x="0.0" y="64" width="320" height="259"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMe-VK-UlE">
@@ -147,19 +147,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2dV-nO-nsi">
-                                            <rect key="frame" x="204" y="168" width="108" height="30"/>
+                                            <rect key="frame" x="212" y="229" width="108" height="30"/>
                                             <color key="backgroundColor" red="0.91692334413528442" green="0.95508593320846558" blue="0.83447098731994629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal" title="Album"/>
                                             <connections>
                                                 <segue destination="w0M-XL-ddw" kind="push" identifier="toEventPhotos" id="Ksn-AW-B0D"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Event Wall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3G7-eg-E4P">
-                                            <rect key="frame" x="8" y="172" width="140" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Event Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGR-bH-ySL">
                                             <rect key="frame" x="8" y="80" width="304" height="21"/>
                                             <color key="backgroundColor" red="0.83585590124130249" green="0.9582030177116394" blue="0.90905386209487915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -190,6 +184,12 @@
                                                 <segue destination="9zC-mq-9ou" kind="push" identifier="locationDetail" id="j0E-hR-rOX"/>
                                             </connections>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Event Wall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3G7-eg-E4P">
+                                            <rect key="frame" x="0.0" y="238" width="140" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <connections>
                                         <outlet property="eventDateHeaderLabel" destination="tGR-bH-ySL" id="26k-oV-Hrj"/>
@@ -404,13 +404,6 @@
                                     <outlet property="delegate" destination="BBZ-Ja-Rqe" id="reb-Cp-UZZ"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Rw-Fr-als">
-                                <rect key="frame" x="254" y="77" width="46" height="30"/>
-                                <state key="normal" title="Save"/>
-                                <connections>
-                                    <action selector="SaveButtonPressed:" destination="BBZ-Ja-Rqe" eventType="touchUpInside" id="8tX-a5-M9B"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vJs-wZ-Q2Q">
                                 <rect key="frame" x="20" y="407" width="280" height="104"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -444,9 +437,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="jcZ-KR-fDQ">
-                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="IGd-bn-Kai">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="oOW-qW-sVr">
                             <connections>
-                                <action selector="signedOut:" destination="BBZ-Ja-Rqe" id="HN1-6b-8Fb"/>
+                                <action selector="SaveButtonPressed:" destination="BBZ-Ja-Rqe" id="Iub-Jt-TGc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -530,18 +523,16 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fAl-C1-lIe">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8v-n2-Bdb">
-                                <rect key="frame" x="260" y="78" width="46" height="30"/>
-                                <color key="backgroundColor" red="0.59781306982040405" green="0.92306721210479736" blue="0.60790956020355225" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Select"/>
-                                <connections>
-                                    <action selector="locationSelected:" destination="aeT-nx-SYv" eventType="touchUpInside" id="aDK-HV-Pd8"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="D47-h1-Vaq"/>
+                    <navigationItem key="navigationItem" id="D47-h1-Vaq">
+                        <barButtonItem key="rightBarButtonItem" title="Select" id="Rnd-uy-4On">
+                            <connections>
+                                <action selector="locationSelected:" destination="aeT-nx-SYv" id="8li-fc-X4t"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="fAl-C1-lIe" id="Hdu-bM-Ful"/>
                     </connections>
@@ -606,9 +597,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="g0D-I5-31q">
-                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="klH-lE-EY4"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="g0D-I5-31q"/>
                     <connections>
                         <outlet property="collectionView" destination="ArN-8z-8AC" id="ia6-Fx-56q"/>
                         <outlet property="collectionViewFlowLayout" destination="6qI-oU-Hgx" id="gIf-8B-zGq"/>
